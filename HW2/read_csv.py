@@ -38,25 +38,45 @@ with open(sigPath[3]) as dataD:
 t = [tA,tB,tC,tD]
 sigs = [sigA,sigB,sigC,sigD]
 
-# sample rate = number of data points / total time of samples
+# Calculate the sample rate for each data set
 samp_rates = []
 for i in range(len(sigs)):
     sr = len(sigs[i])/t[i][-1]
     samp_rates.append(sr)
-print(samp_rates)
+print('Sample Rate A = %.3f Hz' % samp_rates[0])
+print('Sample Rate B = %.3f Hz' % samp_rates[1])    
+print('Sample Rate C = %.3f Hz' % samp_rates[2])    
+print('Sample Rate D = %.3f Hz' % samp_rates[3])        
 
-# plt.figure()
-# plt.plot(tA,sigA,'-b')
-# plt.title('Signal A vs. Time')
-# plt.xlabel('Time (s)')
-# plt.ylabel('SignalA')
-# plt.grid()
-# plt.show()
+# Plot the data
+plt.figure()
+plt.plot(tA,sigA,'-b')
+plt.title('Signal A vs. Time')
+plt.xlabel('Time (s)')
+plt.ylabel('Signal A')
+plt.grid()
+plt.show()
 
-# plt.figure()
-# plt.plot(tB,sigB,'-b')
-# plt.title('Signal B vs. Time')
-# plt.xlabel('Time (s)')
-# plt.ylabel('SignalB')
-# plt.grid()
-# plt.show()
+plt.figure()
+plt.plot(tB,sigB,'-b')
+plt.title('Signal B vs. Time')
+plt.xlabel('Time (s)')
+plt.ylabel('Signal B')
+plt.grid()
+plt.show()
+
+plt.figure()
+plt.plot(tC,sigC,'-b')
+plt.title('Signal C vs. Time')
+plt.xlabel('Time (s)')
+plt.ylabel('Signal C')
+plt.grid()
+plt.show()
+
+plt.figure()
+plt.plot(tD,sigD,'-b')
+plt.title('Signal D vs. Time')
+plt.xlabel('Time (s)')
+plt.ylabel('Signal D')
+plt.grid()
+plt.show()
