@@ -8,8 +8,8 @@ sigPath = [
     r'C:\Users\nmark\OneDrive\Documents\ME433\Python\HW2\sigD.csv'
     ]
 
-tA = []; tB = []; tC = []; tD = [];
-sigA = []; sigB = []; sigC = []; sigD = [];
+tA = []; tB = []; tC = []; tD = []
+sigA = []; sigB = []; sigC = []; sigD = []
 with open(sigPath[0]) as dataA:
     for row in dataA:
         row = row.split(',')
