@@ -23,8 +23,12 @@ with open(sigPath[1]) as dataB:
         sigB.append(float(row[1]))
 
 # sample rate = number of data points / total time of samples
-samp_rate = len(sigA)/tA[-1]
-print('Sample Rate A = %f' % samp_rate)
+samp_rateA = len(sigA)/tA[-1]
+print('Sample Rate A = %f' % samp_rateA)
+
+samp_rateB = len(sigB)/tB[-1]
+print('Sample Rate B = %f' % samp_rateB)
+# Appears that the same rate is the same for all 4 signals ~= 10000
 
 # plt.figure()
 # plt.plot(tA,sigA,'-b')
