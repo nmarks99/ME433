@@ -77,4 +77,4 @@ t = []
 y = []
 frq = []
 Y = []
-for i in range(len(t)):
+#for i in range(len(t)):
