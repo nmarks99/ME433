@@ -34,7 +34,7 @@ with open(sigPath[3]) as dataD:
         row = row.split(',')
         tD.append(float(row[0]))
         sigD.append(float(row[1]))
-
+# Store time and signal data in lists
 t = [tA,tB,tC,tD]
 sigs = [sigA,sigB,sigC,sigD]
 
@@ -43,40 +43,38 @@ samp_rates = []
 for i in range(len(sigs)):
     sr = len(sigs[i])/t[i][-1]
     samp_rates.append(sr)
-print('Sample Rate A = %.3f Hz' % samp_rates[0])
-print('Sample Rate B = %.3f Hz' % samp_rates[1])    
-print('Sample Rate C = %.3f Hz' % samp_rates[2])    
-print('Sample Rate D = %.3f Hz' % samp_rates[3])        
+# print('Sample Rate A = %.3f Hz' % samp_rates[0])
+# print('Sample Rate B = %.3f Hz' % samp_rates[1])    
+# print('Sample Rate C = %.3f Hz' % samp_rates[2])    
+# print('Sample Rate D = %.3f Hz' % samp_rates[3])        
 
-# Plot the data
-plt.figure()
-plt.plot(tA,sigA,'-b')
-plt.title('Signal A vs. Time')
-plt.xlabel('Time (s)')
-plt.ylabel('Signal A')
-plt.grid()
-plt.show()
+# Filter the data using a Fast Fourier Transform
+'''
+dt = 1.0/50000.0            # 50kHz
+t = np.arange(0.0, 1.0, dt) # 5s
+y = sigs[0]
+Fs = samp_rates[0]
+n = len(y)                  # length of the signal
+k = np.arange(n)
+T = n/Fs
+frq = k/T                   # two sides frequency range
+frq = frq[range(int(n/2))]  # one side frequency range
+Y = np.fft.fft(y)/n         # fft computing and normalization
+Y = Y[range(int(n/2))]
 
-plt.figure()
-plt.plot(tB,sigB,'-b')
-plt.title('Signal B vs. Time')
-plt.xlabel('Time (s)')
-plt.ylabel('Signal B')
-plt.grid()
+# Plot the signal vs. time and FFT on subplots
+fig, (ax1, ax2) = plt.subplots(2, 1)
+ax1.plot(t,y,'b')
+ax1.set_xlabel('Time')
+ax1.set_ylabel('Amplitude')
+ax2.loglog(frq,abs(Y),'b') # plotting the fft
+ax2.set_xlabel('Freq (Hz)')
+ax2.set_ylabel('|Y(freq)|')
 plt.show()
+'''
 
-plt.figure()
-plt.plot(tC,sigC,'-b')
-plt.title('Signal C vs. Time')
-plt.xlabel('Time (s)')
-plt.ylabel('Signal C')
-plt.grid()
-plt.show()
-
-plt.figure()
-plt.plot(tD,sigD,'-b')
-plt.title('Signal D vs. Time')
-plt.xlabel('Time (s)')
-plt.ylabel('Signal D')
-plt.grid()
-plt.show()
+t = []
+y = []
+frq = []
+Y = []
+for i in range(len(t)):
