@@ -60,7 +60,7 @@ for i in ts:
     mavt.append(i[num_avg[j]-1:])
     j += 1
 
-
+# Make some plots
 fig,ax = plt.subplots()
 ax.plot(ts[0],sigs[0],'-k',label='Unfiltered')
 ax.plot(mavt[0],sigs_mav[0],'-r',label='Filtered')
