@@ -41,13 +41,17 @@ sigs = [sigA,sigB,sigC,sigD]
 sigs_mav = []
 num_avg = 300 
 
-i = 0
-while i < (len(sigs[0]) - num_avg + 1):
-    reg = sigs[0][i:i+num_avg]
-    mav = sum(reg)/num_avg
-    sigs_mav.append(mav)
-    i += 1
+for k in range(len(sigs)):
+    temp_mav = []
+    i = 0
+    while i < (len(sigs[k]) - num_avg + 1):
+        reg = sigs[k][i:i+num_avg]
+        mav = sum(reg)/num_avg
+        temp_mav.append(mav)
+        i += 1
+    sigs_mav.append(temp_mav)
 
-plt.figure()
-plt.plot(sigs_mav)
-plt.show()
+for i in range(len(sigs)):
+    plt.figure()
+    plt.plot(sigs_mav[i])
+    plt.show()
