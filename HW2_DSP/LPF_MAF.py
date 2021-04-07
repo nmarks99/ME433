@@ -131,7 +131,11 @@ for i in range(len(ts)):
 #     Y_uf[i] = Y_uf[i][num_avg[i]-1:]
 
 # Plot them both on the same axis
-ttl = ['FFT A','FFT B','FFT C','FFT D']
+ttl = ['FFT A, num avg = '+ str(num_avg[0]),
+       'FFT B, num avg = '+ str(num_avg[1]),
+       'FFT C, num avg = '+ str(num_avg[2]),
+       'FFT D, num avg = '+ str(num_avg[3])
+    ]
 
 for i in range(len(sigs)):
     fig,ax = plt.subplots()
