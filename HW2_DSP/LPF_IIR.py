@@ -39,8 +39,30 @@ with open(sigPath[3]) as dataD:
 ts = [tA,tB,tC,tD]
 sigs = [sigA,sigB,sigC,sigD]
 
-iir = []
-A = 0.5
-B = 0.5
+# Filter the data with an IIR
+A = [0.8,0.8,0.8,0.8]
+B = [0.2,0.2,0.2,0.2]
+iir_lpc = []
+for k in range(len(sigs)):
+    iir = np.zeros(len(sigs[k]))
+    for i in range(len(sigs[k])):
+        if i == 0:
+            iir[i] = sigs[k][i]
+        else:
+            iir[i] = A[k]*iir[i-1] + B[k]*sigs[k][i]
+    iir_lpc.append(iir)
+
+# Plot the results
+ttl = [
+    'A = '+str(A[0])+' B = '+ str(B[0]),
+    'A = '+str(A[1])+' B = '+ str(B[1]),
+    'A = '+str(A[2])+' B = '+ str(B[2]),
+    'A = '+str(A[3])+' B = '+ str(B[3])
+]
 for i in range(len(sigs)):
-    iir[i] = A*iir[i-1] + B*sigs[0][i]
+    fig, ax = plt.subplots()
+    ax.plot(sigs[i],'--k')
+    ax.plot(iir_lpc[i],'--r')
+    ax.set(xlabel='Time(s)',ylabel='Signal',title=ttl[i])
+    ax.grid()
+    plt.show()
