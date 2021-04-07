@@ -38,9 +38,11 @@ with open(sigPath[3]) as dataD:
 # Store time and signal data in lists
 ts = [tA,tB,tC,tD]
 sigs = [sigA,sigB,sigC,sigD]
+
+
+# Low pass filter the data with a moving average 
 sigs_mav = []
 num_avg = 300 
-
 for k in range(len(sigs)):
     temp_mav = []
     i = 0
@@ -51,7 +53,14 @@ for k in range(len(sigs)):
         i += 1
     sigs_mav.append(temp_mav)
 
+mavT = []
 for i in range(len(sigs)):
-    plt.figure()
-    plt.plot(sigs_mav[i])
-    plt.show()
+    newt = np.arange(0,len(sigs_mav[i]),num_avg)
+    mavT.append(newt)
+
+print(len(sigs_mav[0]))
+print(len(mavT))
+
+# plt.figure()
+# plt.plot(sigs_mav[0])
+# plt.show()
