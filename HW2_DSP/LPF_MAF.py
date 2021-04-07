@@ -124,11 +124,6 @@ for i in range(len(ts)):
     frq_f.append(frq_temp)
     Y_f.append(Y_temp)
 
-# Modify values so dimensions agree
-# for i in range(len(t_f)):
-#     t_f[i] = t_f[i][num_avg[i]-1:]
-#     f_uf[i] = f_uf[i][num_avg[i]-1:]
-#     Y_uf[i] = Y_uf[i][num_avg[i]-1:]
 
 # Plot them both on the same axis
 ttl = ['FFT A, num avg = '+ str(num_avg[0]),
