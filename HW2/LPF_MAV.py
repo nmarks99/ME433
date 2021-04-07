@@ -42,13 +42,13 @@ sigs = [sigA,sigB,sigC,sigD]
 
 # Low pass filter the data with a moving average 
 sigs_mav = []
-num_avg = 300 
+num_avg = [300,300,1,10]
 for k in range(len(sigs)):
     temp_mav = []
     i = 0
-    while i < (len(sigs[k]) - num_avg + 1):
-        reg = sigs[k][i:i+num_avg]
-        mav = sum(reg)/num_avg
+    while i < (len(sigs[k]) - num_avg[k] + 1):
+        reg = sigs[k][i:i+num_avg[k]]
+        mav = sum(reg)/num_avg[k]
         temp_mav.append(mav)
         i += 1
     sigs_mav.append(temp_mav)
@@ -57,7 +57,7 @@ for k in range(len(sigs)):
 mavt = []
 j = 0
 for i in ts:
-    mavt.append(i[num_avg-1:])
+    mavt.append(i[num_avg[j]-1:])
     j += 1
 
 
@@ -66,4 +66,29 @@ ax.plot(ts[0],sigs[0],'-k',label='Unfiltered')
 ax.plot(mavt[0],sigs_mav[0],'-r',label='Filtered')
 ax.legend()
 ax.set(xlabel='Time (s)', ylabel='Signal A',title='Signal vs. Time (MA of 300 samples)')
+ax.grid()
+plt.show()
+
+fig,ax = plt.subplots()
+ax.plot(ts[1],sigs[1],'-k',label='Unfiltered')
+ax.plot(mavt[1],sigs_mav[1],'-r',label='Filtered')
+ax.legend()
+ax.set(xlabel='Time (s)', ylabel='Signal A',title='Signal vs. Time (MA of 300 samples)')
+ax.grid()
+plt.show()
+
+fig,ax = plt.subplots()
+ax.plot(ts[2],sigs[2],'-k',label='Unfiltered')
+ax.plot(mavt[2],sigs_mav[2],'-r',label='Filtered')
+ax.legend()
+ax.set(xlabel='Time (s)', ylabel='Signal A',title='Signal vs. Time (MA of 300 samples)')
+ax.grid()
+plt.show()
+
+fig,ax = plt.subplots()
+ax.plot(ts[3],sigs[3],'-k',label='Unfiltered')
+ax.plot(mavt[3],sigs_mav[3],'-r',label='Filtered')
+ax.legend()
+ax.set(xlabel='Time (s)', ylabel='Signal A',title='Signal vs. Time (MA of 300 samples)')
+ax.grid()
 plt.show()
