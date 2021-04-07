@@ -38,17 +38,27 @@ with open(sigPath[3]) as dataD:
 # Store time and signal data in lists
 ts = [tA,tB,tC,tD]
 sigs = [sigA,sigB,sigC,sigD]
-sigs_ma5 = []
+sigs_mav = []
+num_avg = 1000
 
-# Moving average of the last 5 data points
-count = 0
-ma5 = 0
-for i in sigs[3]:
-    if count < 5:
-        ma5 = ma5 + i
-        count += 1
-    elif count == 5:
-        count = 0
-        ma5 = ma5/5
-        sigs_ma5.append(ma5)
-        ma5 = 0
+# Moving average
+for i in range(len(sigs)):
+    count = 0
+    mav = 0
+    temp_list = []
+    for i in sigs[i]:
+        if count < num_avg:
+            mav = mav + i
+            count += 1
+        elif count == num_avg:
+            count = 0
+            mav = mav/num_avg
+            temp_list.append(mav)
+            mav = 0
+    else:
+        sigs_mav.append(temp_list)
+
+for i in range(len(sigs_mav)):
+    plt.figure()
+    plt.plot(sigs_mav[i])
+    plt.show()
