@@ -53,14 +53,17 @@ for k in range(len(sigs)):
         i += 1
     sigs_mav.append(temp_mav)
 
-mavT = []
-for i in range(len(sigs)):
-    newt = np.arange(0,len(sigs_mav[i]),num_avg)
-    mavT.append(newt)
+# Make time values for the plots
+mavt = []
+j = 0
+for i in ts:
+    mavt.append(i[num_avg-1:])
+    j += 1
 
-print(len(sigs_mav[0]))
-print(len(mavT))
 
-# plt.figure()
-# plt.plot(sigs_mav[0])
-# plt.show()
+fig,ax = plt.subplots()
+ax.plot(ts[0],sigs[0],'-k',label='Unfiltered')
+ax.plot(mavt[0],sigs_mav[0],'-r',label='Filtered')
+ax.legend()
+ax.set(xlabel='Time (s)', ylabel='Signal A',title='Signal vs. Time (MA of 300 samples)')
+plt.show()
