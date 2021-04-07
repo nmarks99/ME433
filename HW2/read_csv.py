@@ -34,47 +34,68 @@ with open(sigPath[3]) as dataD:
         row = row.split(',')
         tD.append(float(row[0]))
         sigD.append(float(row[1]))
+
 # Store time and signal data in lists
-t = [tA,tB,tC,tD]
+ts = [tA,tB,tC,tD]
 sigs = [sigA,sigB,sigC,sigD]
 
 # Calculate the sample rate for each data set
 samp_rates = []
 for i in range(len(sigs)):
-    sr = len(sigs[i])/t[i][-1]
-    samp_rates.append(sr)
-# print('Sample Rate A = %.3f Hz' % samp_rates[0])
-# print('Sample Rate B = %.3f Hz' % samp_rates[1])    
-# print('Sample Rate C = %.3f Hz' % samp_rates[2])    
-# print('Sample Rate D = %.3f Hz' % samp_rates[3])        
+    sr = len(sigs[i])/ts[i][-1]
+    samp_rates.append(sr) 
 
 # Filter the data using a Fast Fourier Transform
-'''
-dt = 1.0/50000.0            # 50kHz
-t = np.arange(0.0, 1.0, dt) # 5s
-y = sigs[0]
-Fs = samp_rates[0]
-n = len(y)                  # length of the signal
-k = np.arange(n)
-T = n/Fs
-frq = k/T                   # two sides frequency range
-frq = frq[range(int(n/2))]  # one side frequency range
-Y = np.fft.fft(y)/n         # fft computing and normalization
-Y = Y[range(int(n/2))]
+# dt = 1.0/50000.0            # 50kHz
+# t = np.arange(0.0, 1.0, dt) # 5s
+# y = sigs[0]
+# Fs = samp_rates[0]
+# n = len(y)                  # length of the signal
+# k = np.arange(n)
+# T = n/Fs
+# frq = k/T                   # two sides frequency range
+# frq = frq[range(int(n/2))]  # one side frequency range
+# Y = np.fft.fft(y)/n         # fft computing and normalization
+# Y = Y[range(int(n/2))]
 
-# Plot the signal vs. time and FFT on subplots
-fig, (ax1, ax2) = plt.subplots(2, 1)
-ax1.plot(t,y,'b')
-ax1.set_xlabel('Time')
-ax1.set_ylabel('Amplitude')
-ax2.loglog(frq,abs(Y),'b') # plotting the fft
-ax2.set_xlabel('Freq (Hz)')
-ax2.set_ylabel('|Y(freq)|')
-plt.show()
-'''
+# # Plot the signal vs. time and FFT on subplots
+# fig, (ax1, ax2) = plt.subplots(2, 1)
+# ax1.plot(t,y,'b')
+# ax1.set_xlabel('Time')
+# ax1.set_ylabel('Amplitude')
+# ax2.loglog(frq,abs(Y),'b') # plotting the fft
+# ax2.set_xlabel('Freq (Hz)')
+# ax2.set_ylabel('|Y(freq)|')
+# plt.show()
 
 t = []
-y = []
 frq = []
 Y = []
-#for i in range(len(t)):
+for i in range(len(ts)):
+    dt = 1/len(ts[i])
+    t_temp = np.arange(0.0, 1.0, dt)
+    
+    y_temp = sigs[i]
+    Fs = samp_rates[i]
+    n = len(y_temp)
+    k = np.arange(n)
+    T = n/Fs
+    frq_temp = k/T
+    frq_temp = frq_temp[range(int(n/2))]  # one side frequency range
+    Y_temp = np.fft.fft(y_temp)/n              # fft computing and normalization
+    Y_temp = Y_temp[range(int(n/2))]
+
+    t.append(t_temp)
+    frq.append(frq_temp)
+    Y.append(Y_temp)
+
+
+for i in range(len(sigs)):
+    fig, (ax1, ax2) = plt.subplots(2, 1)
+    ax1.plot(t[i],sigs[i],'b')
+    ax1.set_xlabel('Time')
+    ax1.set_ylabel('Amplitude')
+    ax2.loglog(frq[i],abs(Y[i]),'b') # plotting the fft
+    ax2.set_xlabel('Freq (Hz)')
+    ax2.set_ylabel('|Y(freq)|')
+    plt.show()
