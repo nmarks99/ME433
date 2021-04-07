@@ -61,9 +61,10 @@ ttl = [
 ]
 for i in range(len(sigs)):
     fig, ax = plt.subplots()
-    ax.plot(sigs[i],'--k')
-    ax.plot(iir_lpf[i],'--r')
+    ax.plot(sigs[i],'-k',label='Unfiltered')
+    ax.plot(iir_lpf[i],'-r',label='Filtered')
     ax.set(xlabel='Time(s)',ylabel='Signal',title=ttl[i])
+    ax.legend()
     ax.grid()
     plt.show()
 
@@ -120,11 +121,12 @@ for i in range(len(ts)):
 
 
 # Plot them both on the same axis
-ttl = ['FFT A',
-       'FFT B',
-       'FFT C',
-       'FFT D'
-    ]
+ttl = [
+    'FFT A: '+'A = '+str(A[0])+' B = '+ str(B[0]),
+    'FFT B: '+'A = '+str(A[1])+' B = '+ str(B[1]),
+    'FFT C: '+'A = '+str(A[2])+' B = '+ str(B[2]),
+    'FFT D: '+'A = '+str(A[3])+' B = '+ str(B[3])
+]
 
 for i in range(len(sigs)):
     fig,ax = plt.subplots()
