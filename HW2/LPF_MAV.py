@@ -39,26 +39,15 @@ with open(sigPath[3]) as dataD:
 ts = [tA,tB,tC,tD]
 sigs = [sigA,sigB,sigC,sigD]
 sigs_mav = []
-num_avg = 1000
+num_avg = 300 
 
-# Moving average
-for i in range(len(sigs)):
-    count = 0
-    mav = 0
-    temp_list = []
-    for i in sigs[i]:
-        if count < num_avg:
-            mav = mav + i
-            count += 1
-        elif count == num_avg:
-            count = 0
-            mav = mav/num_avg
-            temp_list.append(mav)
-            mav = 0
-    else:
-        sigs_mav.append(temp_list)
+i = 0
+while i < (len(sigs[0]) - num_avg + 1):
+    reg = sigs[0][i:i+num_avg]
+    mav = sum(reg)/num_avg
+    sigs_mav.append(mav)
+    i += 1
 
-for i in range(len(sigs_mav)):
-    plt.figure()
-    plt.plot(sigs_mav[i])
-    plt.show()
+plt.figure()
+plt.plot(sigs_mav)
+plt.show()
