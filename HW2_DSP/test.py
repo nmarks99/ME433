@@ -12,3 +12,4 @@ sigPath = [
 
 (t_fft,frq_fft,Y_fft) = dsp_utils.compute_FFT(sigs,ts)
 
+print(dsp_utils.calc_samp_rate(sigs,ts))
