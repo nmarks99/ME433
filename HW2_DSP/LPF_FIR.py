@@ -52,3 +52,10 @@ for j in range(len(sigs)):
         fir.append(temp_fir)
 
 
+(t,frq,y) = dsp_utils.compute_FFT(sigs,ts)
+(tfir,frqfir,yfir) = dsp_utils.compute_FFT(fir,ts)
+
+fig, ax = plt.subplots()
+ax.loglog(frq[3],abs(y[3]),'k')
+ax.loglog(frqfir[3],abs(yfir[3]),'r')
+plt.show()
