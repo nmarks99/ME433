@@ -1,5 +1,6 @@
 from matplotlib import pyplot as plt 
 import numpy as np
+import dsp_utils
 
 sigPath = [
     r'C:\Users\nmark\OneDrive\Documents\ME433\Python\HW2\sigA.csv',
@@ -8,20 +9,8 @@ sigPath = [
     r'C:\Users\nmark\OneDrive\Documents\ME433\Python\HW2\sigD.csv'
     ]
 
-# Open each CSV file, read it, and append to the appropriate list
-sigs = []
-ts = []
-for i in range(len(sigPath)):
-    temp_sig = []
-    temp_t = []
-    with open(sigPath[i]) as data:
-        for row in data:
-            row = row.split(',')
-            temp_t.append(float(row[0]))
-            temp_sig.append(float(row[1]))
-        else:
-            sigs.append(temp_sig)
-            ts.append(temp_t)
+# Read in the CSV data
+(sigs,ts) = dsp_utils.get_data(sigPath)
 
 # Low pass filter the data with a moving average 
 sigs_mav = []
