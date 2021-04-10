@@ -1,5 +1,6 @@
 from matplotlib import pyplot as plt 
 import numpy as np
+import dsp_utils
 
 # List with the path to each file
 sigPath = [ 
@@ -10,19 +11,8 @@ sigPath = [
     ]
 
 # Open each CSV file, read it, and append to the appropriate list
-sigs = []
-ts = []
-for i in range(len(sigPath)):
-    temp_sig = []
-    temp_t = []
-    with open(sigPath[i]) as data:
-        for row in data:
-            row = row.split(',')
-            temp_t.append(float(row[0]))
-            temp_sig.append(float(row[1]))
-        else:
-            sigs.append(temp_sig)
-            ts.append(temp_t)
+(sigs,ts) = dsp_utils.get_data(sigPath)
+
 
 
 
