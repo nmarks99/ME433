@@ -21,14 +21,18 @@ def get_data(sigPath):
     return (sigs,ts)
 
 
-def compute_FFT(sigs,ts):
-    '''
-    Generates a fast fourier transform of the inputted signal 
-    '''
+def calc_samp_rate(sigs,ts):
     samp_rates = [] # Compute sample rates
     for i in range(len(sigs)):
         sr = len(sigs[i])/ts[i][-1]
         samp_rates.append(sr) 
+    return samp_rates
+
+def compute_FFT(sigs,ts):
+    '''
+    Generates a fast fourier transform of the inputted signal 
+    '''
+    samp_rates = calc_samp_rate(sigs,ts)
 
     t_fft = []
     frq_fft = []
@@ -52,4 +56,3 @@ def compute_FFT(sigs,ts):
         Y_fft.append(Y_temp)
 
     return (t_fft, frq_fft, Y_fft)
-    
