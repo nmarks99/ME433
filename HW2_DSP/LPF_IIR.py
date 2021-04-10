@@ -1,5 +1,6 @@
 from matplotlib import pyplot as plt 
 import numpy as np
+import dsp_utils
 
 sigPath = [
     r'C:\Users\nmark\OneDrive\Documents\ME433\Python\HW2\sigA.csv',
@@ -9,19 +10,7 @@ sigPath = [
     ]
 
 # Open each CSV file, read it, and append to the appropriate list
-sigs = []
-ts = []
-for i in range(len(sigPath)):
-    temp_sig = []
-    temp_t = []
-    with open(sigPath[i]) as data:
-        for row in data:
-            row = row.split(',')
-            temp_t.append(float(row[0]))
-            temp_sig.append(float(row[1]))
-        else:
-            sigs.append(temp_sig)
-            ts.append(temp_t)
+(sigs,ts) = dsp_utils.get_data(sigPath)
             
 # Filter the data with an IIR
 A = [0.8,0.8,0.8,0.8]
@@ -51,7 +40,6 @@ for i in range(len(sigs)):
     ax.legend()
     ax.grid()
     plt.show()
-
 
 
 # Generate FFT of the unfiltered data

@@ -10,7 +10,5 @@ sigPath = [
 
 (sigs,ts) = dsp_utils.get_data(sigPath)
 
-plt.figure()
-plt.plot(ts[3],sigs[3])
-plt.show()
+(t_fft,frq_fft,Y_fft) = dsp_utils.compute_FFT(sigs,ts)
 
