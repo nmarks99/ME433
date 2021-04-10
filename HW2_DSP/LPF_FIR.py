@@ -45,8 +45,10 @@ coeffs = np.array([
 
 fir = []
 for j in range(len(sigs)):
+    temp_fir = []
     for i in range(len(coeffs),len(sigs[j])):
-        temp_fir = []
         temp_fir.append(coeffs * sigs[j][i-len(coeffs):i])
     else:
         fir.append(temp_fir)
+
+
