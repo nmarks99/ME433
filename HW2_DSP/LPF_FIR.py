@@ -83,16 +83,23 @@ for j in range(len(sigs)):
 (t,frq,y) = dsp_utils.compute_FFT(sigs,ts)
 (tfir,frqfir,yfir) = dsp_utils.compute_FFT(fir,ts)
 
+# Make the plots
+ttl = [
+'Signal A FIR: f_L = 60; b_L = 35',
+'Signal B FIR: f_L = 60; b_L = 35',
+'Signal C FIR: f_L = 60; b_L = 35',
+'Signal D FIR: f_L = 60; b_L = 35'
+]
 
-'''
-fig, ax = plt.subplots()
-ax.loglog(frq[3],abs(y[3]),'k')
-ax.loglog(frqfir[3],abs(yfir[3]),'r')
-ax.grid()
-plt.show()
-'''
+for i in range(len(sigs)):
+    fig, (ax1,ax2) = plt.subplots(2,1)
+    ax1.plot(sigs[i],'k')
+    ax1.plot(fir[i],'r')
+    ax1.set(xlabel='Time (s)',ylabel='Signal',title = ttl[i])
 
-fig,ax = plt.subplots()
-ax.plot(sigs[3],'k')
-ax.plot(fir[3],'r')
-plt.show()
+    ax2.loglog(frq[i],abs(y[i]),'k')
+    ax2.loglog(frqfir[i],abs(yfir[i]),'r')
+    ax2.set(xlabel='freq (Hz)', ylabel='|Y(freq)|')
+    ax2.grid()
+
+    plt.show()
