@@ -51,6 +51,7 @@ for i in range(len(sigs)):
 # Generate FFT of the unfiltered data
 (t_uf, frq_uf, Y_uf) = dsp_utils.compute_FFT(sigs,ts)
 
+
 # Generate FFT for the filtered data
 (t_f, frq_f, Y_f) = dsp_utils.compute_FFT(sigs_mav,ts)
 
