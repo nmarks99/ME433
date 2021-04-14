@@ -15,7 +15,7 @@
 #pragma config IESO = OFF // disable switching clocks
 #pragma config POSCMOD = HS // high speed crystal mode
 #pragma config OSCIOFNC = OFF // disable clock output
-#pragma config FPBDIV = DIC_1 // divide sysclk freq by 1 for peripheral bus clock
+#pragma config FPBDIV = DIV_1 // divide sysclk freq by 1 for peripheral bus clock
 #pragma config FCKSM = CSDCMD // disable clock switch and FSCM
 #pragma config WDTPS = PS1048576 // use largest wdt
 #pragma config WINDIS = OFF // use non-window mode wdt
@@ -28,7 +28,7 @@
 #pragma config FPLLODIV = DIV_2 // divide clock after FPLLMUL to get 48MHz
 
 // DEVCFG3
-#pragma config USERID = F // some 16bit userid, doesn't matter what
+#pragma config USERID = 00000000 // some 16bit userid, doesn't matter what
 #pragma config PMDL1WAY = OFF // allow multiple reconfigurations
 #pragma config IOL1WAY = OFF // allow multiple reconfigurations
 
@@ -49,10 +49,22 @@ int main() {
     DDPCONbits.JTAGEN = 0;
 
     // do your TRIS and LAT commands here
-
+    TRISBbits.TRISB4 = 1;   // B4 is an input
+    TRISAbits.TRISA4 = 0;   // A4 is an output
+    LATAbits.LATA4 = 0;     // AF is initially off
+    
     __builtin_enable_interrupts();
-
+    
     while (1) {
+        if (PORTBbits.RB4){
+            LATAbits.LATA4 = 1;
+//            while(_CP0_GET_COUNT() <= 24000000){
+//                // Do nothing
+//            }
+        }
+        
+        
+        
         // use _CP0_SET_COUNT(0) and _CP0_GET_COUNT() to test the PIC timing
         // remember the core timer runs at half the sysclk
 
