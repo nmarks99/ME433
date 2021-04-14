@@ -64,7 +64,7 @@ int main() {
 //            }
         }
         else{
-            LATAbits.LATA4 = 0
+            LATAbits.LATA4 = 0;
         }
         
         
