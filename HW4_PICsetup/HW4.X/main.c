@@ -65,24 +65,11 @@ int main() {
     while (1) {
         LATAbits.LATA4 = 1;
         _CP0_SET_COUNT(0);
-        while(_CP0_GET_COUNT() < 8000000){;}
+        while(_CP0_GET_COUNT() < 4000000){;}
         LATAbits.LATA4 = 0;
         _CP0_SET_COUNT(0);
-        while(_CP0_GET_COUNT() < 8000000){;}
-        
-        
-//        if (!PORTBbits.RB4){ // If B4 is low (button is pushed)
-//            LATAbits.LATA4 = 1; // If button pushed, turn on A4 LED 
-//            delay(0.5);         // Wait 0.5 sec
-//            LATAbits.LATA4 = 0; // Turn it off again
-//            delay(0.5);          // Wait another 0.5 sec
-//            LATAbits.LATA4 = 1; // On 
-//            delay(0.5);          // Wait
-//            LATAbits.LATA4 = 0; // Off
-//        }
-        
-        
-        
+        while(_CP0_GET_COUNT() < 4000000){;}
+       
         // use _CP0_SET_COUNT(0) and _CP0_GET_COUNT() to test the PIC timing
         // remember the core timer runs at half the sysclk
 
