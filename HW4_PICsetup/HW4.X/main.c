@@ -2,7 +2,7 @@
 #include<sys/attribs.h>  // __ISR macro
 
 // DEVCFG0
-#pragma config DEBUG = OFF // disable debugging
+#pragma config DEBUG = OFF  // disable debugging
 #pragma config JTAGEN = OFF // disable jtag
 #pragma config ICESEL = ICS_PGx1 // use PGED1 and PGEC1
 #pragma config PWP = OFF // disable flash write protect
@@ -31,6 +31,13 @@
 #pragma config USERID = 00000000 // some 16bit userid, doesn't matter what
 #pragma config PMDL1WAY = OFF // allow multiple reconfigurations
 #pragma config IOL1WAY = OFF // allow multiple reconfigurations
+// ============================================================================
+
+
+#define CORE_TICKS 24000000 // sysclk = 48MHz; CORE_TICks = sysclk/2
+
+
+void delay();
 
 int main() {
 
@@ -51,26 +58,40 @@ int main() {
     // do your TRIS and LAT commands here
     TRISBbits.TRISB4 = 1;   // B4 is an input
     TRISAbits.TRISA4 = 0;   // A4 is an output
-    LATAbits.LATA4 = 0;     // AF is initially off
+    LATAbits.LATA4 = 0;     // A4 is initially off
     
     __builtin_enable_interrupts();
     
     while (1) {
-        if (PORTBbits.RB4){
-            LATAbits.LATA4 = 1;
-//            while(_CP0_GET_COUNT() <= 24000000){
-//                // Do nothing
-            
-//            }
-        }
-        else{
-            LATAbits.LATA4 = 0;
-        }
+        LATAbits.LATA4 = 1;
+        _CP0_SET_COUNT(0);
+        while(_CP0_GET_COUNT() < 8000000){;}
+        LATAbits.LATA4 = 0;
+        _CP0_SET_COUNT(0);
+        while(_CP0_GET_COUNT() < 8000000){;}
+        
+        
+//        if (!PORTBbits.RB4){ // If B4 is low (button is pushed)
+//            LATAbits.LATA4 = 1; // If button pushed, turn on A4 LED 
+//            delay(0.5);         // Wait 0.5 sec
+//            LATAbits.LATA4 = 0; // Turn it off again
+//            delay(0.5);          // Wait another 0.5 sec
+//            LATAbits.LATA4 = 1; // On 
+//            delay(0.5);          // Wait
+//            LATAbits.LATA4 = 0; // Off
+//        }
         
         
         
         // use _CP0_SET_COUNT(0) and _CP0_GET_COUNT() to test the PIC timing
         // remember the core timer runs at half the sysclk
 
+    }
+}
+
+void delay(){
+    _CP0_SET_COUNT(0);
+    while(_CP0_GET_COUNT() < CORE_TICKS){
+        // Wait and do nothing
     }
 }
