@@ -60,7 +60,11 @@ int main() {
             LATAbits.LATA4 = 1;
 //            while(_CP0_GET_COUNT() <= 24000000){
 //                // Do nothing
+            
 //            }
+        }
+        else{
+            LATAbits.LATA4 = 0
         }
         
         
