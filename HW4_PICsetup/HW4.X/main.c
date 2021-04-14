@@ -37,7 +37,7 @@
 #define CORE_TICKS 24000000 // sysclk = 48MHz; CORE_TICks = sysclk/2
 
 
-void delay();
+void delay(int waitTime);
 
 int main() {
 
@@ -76,9 +76,9 @@ int main() {
     }
 }
 
-void delay(){
+void delay(int waitTime){
     _CP0_SET_COUNT(0);
-    while(_CP0_GET_COUNT() < CORE_TICKS){
-        // Wait and do nothing
+    while(_CP0_GET_COUNT() < CORE_TICKS*waitTime){
+        // Wait
     }
 }
