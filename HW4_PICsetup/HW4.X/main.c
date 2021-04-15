@@ -10,7 +10,7 @@
 #pragma config CP = OFF // disable code protect
 
 // DEVCFG1
-#pragma config FNOSC = PRI // use primary oscillator with pll
+#pragma config FNOSC = PRIPLL // use primary oscillator with pll
 #pragma config FSOSCEN = OFF // disable secondary oscillator
 #pragma config IESO = OFF // disable switching clocks
 #pragma config POSCMOD = HS // high speed crystal mode
@@ -34,10 +34,10 @@
 // ============================================================================
 
 
-#define CORE_TICKS 24000000 // sysclk = 48MHz; CORE_TICks = sysclk/2
+#define CORE_TICKS 24000000 // sysclk = 48MHz; CORE_TICKS = sysclk/2 = 24M
+                           // Currenlty sysclk is 8MHz and core timer is 4MHz?
 
-
-void delay(int waitTime);
+void delay(float waitTime);
 
 int main() {
 
@@ -64,19 +64,13 @@ int main() {
     
     while (1) {
         LATAbits.LATA4 = 1;
-        _CP0_SET_COUNT(0);
-        while(_CP0_GET_COUNT() < 4000000){;}
+        delay(0.5);
         LATAbits.LATA4 = 0;
-        _CP0_SET_COUNT(0);
-        while(_CP0_GET_COUNT() < 4000000){;}
-       
-        // use _CP0_SET_COUNT(0) and _CP0_GET_COUNT() to test the PIC timing
-        // remember the core timer runs at half the sysclk
-
+        delay(0.5);
     }
 }
 
-void delay(int waitTime){
+void delay(float waitTime){
     _CP0_SET_COUNT(0);
     while(_CP0_GET_COUNT() < CORE_TICKS*waitTime){
         // Wait
