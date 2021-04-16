@@ -35,7 +35,6 @@
 
 
 #define CORE_TICKS 24000000 // sysclk = 48MHz; CORE_TICKS = sysclk/2 = 24M
-                           // Currenlty sysclk is 8MHz and core timer is 4MHz?
 
 void delay(float waitTime);
 
@@ -62,17 +61,29 @@ int main() {
     
     __builtin_enable_interrupts();
     
+    int bflag = 0;
     while (1) {
-        LATAbits.LATA4 = 1;
-        delay(0.5);
-        LATAbits.LATA4 = 0;
-        delay(0.5);
+        if (!PORTBbits.RB4 & bflag == 0){
+            bflag = 1;  // Set bflag to 1 after detecting a button press
+        }
+        if (bflag > 0){ // Pulse light twice after button press
+            LATAbits.LATA4 = 1; // LED on
+            delay(0.5);         // Delay 0.5s 
+            LATAbits.LATA4 = 0;
+            delay(0.5);
+            LATAbits.LATA4 = 1;
+            delay(0.5);
+            LATAbits.LATA4 = 0;
+            bflag = 0;  // Reset the flag
+        }   
     }
 }
 
 void delay(float waitTime){
+    /* delay(waitTime) uses the core timer to delay for
+     the specified amount of time. The input variable "waitTime" is in seconds */
     _CP0_SET_COUNT(0);
     while(_CP0_GET_COUNT() < CORE_TICKS*waitTime){
-        // Wait
+        // Wait for "waitTime" seconds
     }
 }
