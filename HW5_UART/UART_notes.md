@@ -12,3 +12,5 @@
    - CTS (clear to send)
    - RTS (ready to transmitt)
   
+### CP2104
+- Talks to UART, sends data over USB
