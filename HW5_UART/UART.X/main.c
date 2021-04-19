@@ -59,6 +59,26 @@ int main() {
     TRISAbits.TRISA4 = 0;   // A4 is an output
     LATAbits.LATA4 = 0;     // A4 is initially off
     
+    U1RXRbits.U1RXR = 0b0001; // U1RX is B6
+    RPB7Rbits.RPB7R = 0b0001; // U1TX is B7
+    
+    // turn on UART3 without an interrupt
+    U1MODEbits.BRGH = 0; // set baud to NU32_DESIRED_BAUD
+    U1BRG = ((48000000 / 115200) / 16) - 1;
+
+    // 8 bit, no parity bit, and 1 stop bit (8N1 setup)
+    U1MODEbits.PDSEL = 0;
+    U1MODEbits.STSEL = 0;
+
+    // configure TX & RX pins as output & input pins
+    U1STAbits.UTXEN = 1;
+    U1STAbits.URXEN = 1;
+    // configure hardware flow control using RTS and CTS
+    U1MODEbits.UEN = 2;
+
+    // enable the uart
+    U1MODEbits.ON = 1;
+    
     __builtin_enable_interrupts();
     
     int bflag = 0;
