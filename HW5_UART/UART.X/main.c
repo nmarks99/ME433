@@ -58,7 +58,7 @@ int main() {
     // disable JTAG to get pins back
     DDPCONbits.JTAGEN = 0;
 
-    // do your TRIS and LAT commands here
+    // Set input/output pins and LAT 
     TRISBbits.TRISB4 = 1;   // B4 is an input
     TRISAbits.TRISA4 = 0;   // A4 is an output
     LATAbits.LATA4 = 0;     // A4 is initially off
