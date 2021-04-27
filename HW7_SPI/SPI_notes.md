@@ -11,3 +11,4 @@ SDO -> SDI
 SDI <- SDO
 
 CS -> CS
+
