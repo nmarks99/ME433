@@ -1,15 +1,15 @@
 // initialize SPI1
 void initSPI() {
     // Pin B14 has to be SCK1
-    // Turn of analog pins
-    //...
+    // Turn off analog pins
+    ANSELA = 0; // 1 for analog
     // Make an output pin for CS
-    //...
-    //...
-    // Set SDO1
-    //...
-    // Set SDI1
-    //...
+    TRISAbits.TRISaA0 = 0;
+    LATAbits.LATA0 = 1;
+    // Make A1 SDO1
+    RPA1bits.RPA1R = 0b0011;
+    // Make B5 SDI1
+    SDI1Rbits.SDI1R = 0b0001;
 
     // setup SPI1
     SPI1CON = 0; // turn off the spi module and reset it
