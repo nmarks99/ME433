@@ -6,7 +6,10 @@
 int main(void){
     
     NM32_Startup();
-    initSPI();  
+    initSPI();
+    /*Output SD01 (A1)
+      Input SDI1 (B5)
+      Clock SCK1 (pin 25) */
     
     unsigned char i = 0;
     while(1){
