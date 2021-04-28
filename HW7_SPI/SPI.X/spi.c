@@ -1,12 +1,14 @@
 #include "spi.h"
+#include "NM32.h"
 
 // initialize SPI1
 void initSPI() {
     // Pin B14 has to be SCK1
     // Turn off analog pins
     ANSELA = 0; // 1 for analog
+    
     // Make an output pin for CS
-    TRISAbits.TRISaA0 = 0;
+    TRISAbits.TRISA0 = 0;  
     LATAbits.LATA0 = 1; // Initialize it high
     // Make A1 SDO1
     RPA1Rbits.RPA1R = 0b0011;
