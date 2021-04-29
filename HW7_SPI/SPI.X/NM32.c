@@ -109,3 +109,9 @@ void writeUART1(const char * string) {
     ++string;
   }
 }
+
+// Delay function using the core timer 
+void core_delay(float seconds){
+    _CP0_SET_COUNT(0);
+    while (_CP0_GET_COUNT() < CORE_TICKS / seconds ){;}
+}
