@@ -13,36 +13,37 @@ int main(void){
       Clock SCK1 (pin 25) */
     
     unsigned short vmax = 4096; // 12-bit DAC, range between 0 and 2^12 = 4096
-    unsigned short v = 0;       // Voltage between 0 and 4096;
+    unsigned short v;       // Voltage between 0 and 4096;
     unsigned char c;            // Channel A(0) or B(1)
     unsigned short p;           // Final variable we will send to the DAC
-    float delayTime = 1.0;      // Delay between sending data
+    float delayTime = 0.005;      // Delay between sending data
     
     while(1){
         
         //v1 =  -200; negative outputs max voltage ???
         
-        v = 4095;
-        p = bit_manip(p,v,1);
-        
-        // Write 1 bit over SPI
-        LATAbits.LATA0 = 0; // Bring CS low
-        spi_io(p >> 8);    
-        spi_io(p);
-        LATAbits.LATA0 = 1; // Bring CS high
-        
-        core_delay(delayTime);  // Delay for 1/2 sec
-        
-        v = 2048;
-        p = bit_manip(p,v,1);
-        
-        // Write 1 bit over SPI
-        LATAbits.LATA0 = 0; // Bring CS low
-        spi_io(p >> 8);    
-        spi_io(p);
-        LATAbits.LATA0 = 1; // Bring CS high
-        
-        core_delay(delayTime);
+        for (v = 0; v < 4095; v++){
+            p = bit_manip(p,v,0);
+            
+            // Write 1 bit over SPI
+            LATAbits.LATA0 = 0; // Bring CS low
+            spi_io(p >> 8);    
+            spi_io(p);
+            LATAbits.LATA0 = 1; // Bring CS high
+
+//            core_delay(delayTime);  // Delay for 1/2 sec
+        }
+        for (v = 4096; v > 0; v-- ){
+            p = bit_manip(p,v,0);
+            
+            // Write 1 bit over SPI
+            LATAbits.LATA0 = 0; // Bring CS low
+            spi_io(p >> 8);    
+            spi_io(p);
+            LATAbits.LATA0 = 1; // Bring CS high
+
+//            core_delay(delayTime);  // Delay for 1/2 sec
+        }
     }
     return 0;
 }
