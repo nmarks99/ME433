@@ -33,7 +33,7 @@ int main(void){
 
 //            core_delay(delayTime);  // Delay for 1/2 sec
         }
-        for (v = 4096; v > 0; v-- ){
+        for (v = 4095; v > 0; v-- ){
             p = bit_manip(p,v,0);
             
             // Write 1 bit over SPI
