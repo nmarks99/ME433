@@ -20,20 +20,7 @@ int main(void){
     // cslow; spi_io(p>>8);spi_io(p)); cshigh;
     while(1){
         
-        if (f == 1){    // go up
-            v1 += 100;
-        }
-        else if (f == 0){   // go down
-            v1 -= 100;
-        }
-        if (v1 >= vmax){
-            v1 = vmax;
-            f = 0;
-        }
-        if (v1 <= 0){
-            v1 = vmax;
-            f = 1;
-        }
+        v1 =  -200; // negative outputs max voltage ???
         
         c1 = 1;
         p1 = (c1 << 15);
