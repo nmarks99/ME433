@@ -24,5 +24,5 @@
 - 8 bit address
 - 8 bit ommand
 - Restart bit 
-- 8 bit address
+- 8 bit address 
   
