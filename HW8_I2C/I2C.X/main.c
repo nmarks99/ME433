@@ -26,13 +26,13 @@ int main(void){
 //    setPin(Wadd,0x14,0xFF);   // Turn on A pins  
     
     unsigned char buff[100];
-    unsigned char f;
+    unsigned char f;   // Flag to tell if the button is pushed
     
     while(1){
         
         f = readPin(Wadd, 0x13);    // Read b pins
-        f = f << 7; // If button is pushed, f == 0;
-        if (f == 0){
+        f = f << 7; 
+        if (f == 0){  // If button is pushed, f == 0;
             setPin(Wadd,0x14,0xFF);
         }
         else{
@@ -40,10 +40,8 @@ int main(void){
         }
         
         NM32_LED1 = 1;     // Turn on LED 
-//        setPin(Wadd,0x14,0xFF);
         core_delay(0.1);   // Delay for 0.25 sec
         NM32_LED1 = 0;     // Turn off LED
-//        setPin(Wadd,0x14,0x00);
         core_delay(0.1);   // Delay for 0.25 sec
     }
 }
