@@ -5,7 +5,8 @@ int main(void){
     
     NM32_Startup();
     i2c_master_setup();
-    
+    unsigned char Wadd = 0b01000000;    // Write address
+    unsigned char recv;
     /* 
     Initialize pins:
      GPA7 is output, make all the A pins output, IODIRA = 0x00 
@@ -19,15 +20,30 @@ int main(void){
      0b01000001 for reading
      */
     
-    setPin(0b01000000,0x00,0x00);   // Make A pins output
-    setPin(0b01000000,0x01,0xFF);   // Make B pins input
-    setPin(0b01000000,0x14,0xFF);   // Turn on A pins  
+    setPin(Wadd,0x00,0x00);   // Make A pins output
+    setPin(Wadd,0x01,0xFF);   // Make B pins input
+//    setPin(Wadd,0x14,0xFF);   // Turn on A pins  
     
+    unsigned char buff[100];
+    unsigned char f = 0b00000000;
     while(1){
         
-        NM32_LED1 = 1;      // Turn on LED 
-        core_delay(0.2);   // Delay for 0.25 sec
-        NM32_LED1 = 0;      // Turn off LED
-        core_delay(0.2);   // Delay for 0.25 sec
+        recv = readPin(Wadd, 0x13);    // Read b pins
+        f = f | (recv >> 7); // If button is pushed, f == 0;
+//        sprintf(buff,"f = %d, recv = %d\r\n",f,recv);
+//        writeUART1(buff);
+        if (f == 0){
+            setPin(Wadd,0x14,0xFF);
+        }
+        else{
+            setPin(Wadd,0x14,0x00);
+        }
+        
+        NM32_LED1 = 1;     // Turn on LED 
+//        setPin(Wadd,0x14,0xFF);
+        core_delay(0.1);   // Delay for 0.25 sec
+        NM32_LED1 = 0;     // Turn off LED
+//        setPin(Wadd,0x14,0x00);
+        core_delay(0.1);   // Delay for 0.25 sec
     }
 }

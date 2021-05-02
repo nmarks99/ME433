@@ -14,6 +14,6 @@ void i2c_master_ack(int val); // send an ACK (0) or NACK (1)
 void i2c_master_stop(void); // send a stop
 
 void setPin(unsigned char Wadd, unsigned char reg, unsigned char value);
-unsigned char readPin(unsigned char Wadd, unsigned char register);
+unsigned char readPin(unsigned char Wadd, unsigned char reg);
 
 #endif
