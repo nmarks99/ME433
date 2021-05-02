@@ -14,11 +14,10 @@
 
 ## Writing 
 Wadd - 0b01000000  
-Example:  
 Start bit  
-Address for write  
-Send data - Register  
-Send data - Value  
+Send address for writing  
+Send data - which register?  
+Send data - what value?  
 Stop bit  
 
 To make A pins outputs/inputs ->  
@@ -28,10 +27,10 @@ IN:  IODIR(0x00) set t0 0xFF
 ## Reading 
 Radd - 0b01000001  
 Start bit  
-Address for write  
-Send req  
+Send address for writing  
+Send request  
 Restart bit  
-Address for reading  
+Send address for reading  
 Get recieved value  
 Acknowledge that we got it  
 Stop bit

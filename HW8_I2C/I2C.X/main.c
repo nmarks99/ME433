@@ -2,6 +2,8 @@
 #include "i2c_master_noint.h"
 
 int main(void){
+    NM32_Startup();
+    i2c_master_setup();
     
     /* 
     Initialize pins:
@@ -11,6 +13,8 @@ int main(void){
      GBB0 is input make all B pins input, IODIRB = 0xFF 
      address = 0b01000001, register = 0x01, value = 0xFF
      */
+    
+    
 //    setPin(unsigned char 0b01000000, unsigned char 0x00, unsigned char 0x00);
 //    setPin(unsigned char 0b01000001, unsigned char 0x01, unsigned char 0xFF);
 //    
@@ -20,9 +24,9 @@ int main(void){
     
     while(1){
         
-        LATAbits.LATA4 = 1;      // Turn on LED 
-//        core_delay(0.25);   // Delay for 0.25 sec
-//        NM32_LED1 = 0;      // Turn off LED
-//        core_delay(0.25);   // Delay for 0.25 sec
+        NM32_LED1 = 1;      // Turn on LED 
+        core_delay(0.125);   // Delay for 0.25 sec
+        NM32_LED1 = 0;      // Turn off LED
+        core_delay(0.125);   // Delay for 0.25 sec
     }
 }
