@@ -16,9 +16,9 @@ int main(void){
      GBB0 is input, make all B pins input, IODIRB = 0xFF 
      register = 0x01, value = 0xFF
      
-     We have set A0 = A1 = A2 = 0, so the address to the IO expander is 
-     0b01000000 for writing
-     0b01000001 for reading
+     We set A0 = A1 = A2 = 0, so the address to the IO expander is 
+     Address for reading: 0b01000000 
+     Address for writing: 0b01000001 
      */
     
     setPin(Wadd,0x00,0x00);   // Make A pins output
@@ -30,7 +30,7 @@ int main(void){
     
     while(1){
         
-        f = readPin(Wadd, 0x13);    // Read b pins
+        f = readPin(Wadd, 0x13); // Read b pins, (GPIOB address = 0x13)
         f = f << 7; 
         if (f == 0){  // If button is pushed, f == 0;
             setPin(Wadd,0x14,0xFF);
