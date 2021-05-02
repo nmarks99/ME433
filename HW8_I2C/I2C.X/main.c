@@ -7,6 +7,7 @@ int main(void){
     i2c_master_setup();
     unsigned char Wadd = 0b01000000;    // Write address
     unsigned char recv;
+    
     /* 
     Initialize pins:
      GPA7 is output, make all the A pins output, IODIRA = 0x00 
@@ -25,13 +26,12 @@ int main(void){
 //    setPin(Wadd,0x14,0xFF);   // Turn on A pins  
     
     unsigned char buff[100];
-    unsigned char f = 0b00000000;
+    unsigned char f;
+    
     while(1){
         
-        recv = readPin(Wadd, 0x13);    // Read b pins
-        f = f | (recv >> 7); // If button is pushed, f == 0;
-//        sprintf(buff,"f = %d, recv = %d\r\n",f,recv);
-//        writeUART1(buff);
+        f = readPin(Wadd, 0x13);    // Read b pins
+        f = f << 7; // If button is pushed, f == 0;
         if (f == 0){
             setPin(Wadd,0x14,0xFF);
         }
