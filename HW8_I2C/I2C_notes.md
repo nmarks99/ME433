@@ -26,7 +26,7 @@ OUT: IODIR(0x00) set to 0x00
 IN:  IODIR(0x00) set t0 0xFF
 
 ## Reading 
-Radd - 0b01000001
+Radd - 0b01000001  
 Start bit  
 Address for write  
 Send req  

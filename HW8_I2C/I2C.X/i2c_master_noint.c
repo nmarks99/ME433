@@ -62,3 +62,7 @@ void i2c_master_stop(void) { // send a STOP:
 void setPin(unsigned char address, unsigned char register, unsigned char value){
     
 }
+
+unsigned char readPin(unsigned char address, unsigned char register){
+    // code
+}
