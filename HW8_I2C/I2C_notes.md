@@ -13,16 +13,26 @@
   - both wires should read high when there is no data communication
 
 ## Writing 
-- Start bit
-- 8 bit address
-- 8 bit command
-- 8 bit value
-- Stop bit
+Wadd - 0b01000000  
+Example:  
+Start bit  
+Address for write  
+Send data - Register  
+Send data - Value  
+Stop bit  
+
+To make A pins outputs/inputs ->  
+OUT: IODIR(0x00) set to 0x00
+IN:  IODIR(0x00) set t0 0xFF
 
 ## Reading 
-- Start bit
-- 8 bit address
-- 8 bit ommand
-- Restart bit 
-- 8 bit address 
+Radd - 0b01000001
+Start bit  
+Address for write  
+Send req  
+Restart bit  
+Address for reading  
+Get recieved value  
+Acknowledge that we got it  
+Stop bit
   
