@@ -61,12 +61,12 @@ void i2c_master_stop(void) { // send a STOP:
 
 void setPin(unsigned char address, unsigned char reg, unsigned char value){
     i2c_master_start();       // Start bit
-    i2c_master_send(address);    // Send address for write
-    i2c_master_send(reg);        // Send data - which register?
-    i2c_master_send(value);      // Send data - what value?
-    i2c_master_stop();       // Stop bit   
+    i2c_master_send(address); // Send address for write
+    i2c_master_send(reg);     // Send data - which register?
+    i2c_master_send(value);     // Send data - what value?
+    i2c_master_stop();        // Stop bit   
 }
-//
-//unsigned char readPin(unsigned char address, unsigned char register){
-//    // code
-//}
+
+unsigned char readPin(unsigned char address, unsigned char register){
+    // code
+}

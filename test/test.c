@@ -4,8 +4,9 @@ int main(void){
 
     short i;
     
-    i = 0b00001111;
-    printf("%d",i);
+    int a = 0b01000000;
+    int b = a | 0b01000001;
+    printf("%d",b);
 
     return 0;
 

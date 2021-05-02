@@ -28,7 +28,7 @@ IN:  IODIR(0x00) set t0 0xFF
 Radd - 0b01000001  
 Start bit  
 Send address for writing  
-Send request  
+Send register you want to read from  
 Restart bit  
 Send address for reading  
 Get recieved value  
