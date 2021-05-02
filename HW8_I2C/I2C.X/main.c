@@ -23,9 +23,7 @@ int main(void){
     
     setPin(Wadd,0x00,0x00);   // Make A pins output
     setPin(Wadd,0x01,0xFF);   // Make B pins input
-//    setPin(Wadd,0x14,0xFF);   // Turn on A pins  
     
-    unsigned char buff[100];
     unsigned char f;   // Flag to tell if the button is pushed
     
     while(1){
