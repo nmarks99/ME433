@@ -73,6 +73,7 @@ unsigned char readPin(unsigned char Wadd, unsigned char reg){
    
     i2c_master_start();       // Send start bit
     i2c_master_send(Wadd);    // Send write address
+    i2c_master_send(reg);     // Send the register we want to read from 
     i2c_master_restart();     // Restart
     i2c_master_send(Radd);    // Send read address
     recv = i2c_master_recv(); // Get received value 
