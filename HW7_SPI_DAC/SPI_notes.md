@@ -8,4 +8,3 @@ SCK -> SCK
 SDO -> SDI  
 SDI <- SDO  
 CS -> CS  
-
