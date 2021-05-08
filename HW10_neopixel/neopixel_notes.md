@@ -1,1 +1,1 @@
-# NOTES GO HERE
+# WS2812B Neopixels
