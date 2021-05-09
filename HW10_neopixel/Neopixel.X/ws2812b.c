@@ -4,7 +4,7 @@
 
 // Timer2 delay times, you can tune these if necessary
 #define LOWTIME 15 // number of 48MHz cycles to be low for 0.35uS
-#define HIGHTIME 65 // number of 48MHz cycles to be high for 1.65uS
+#define HIGHTIME 45 // number of 48MHz cycles to be high for 1.65uS
 
 // setup Timer2 for 48MHz, and setup the output pin
 void ws2812b_setup() {
@@ -34,14 +34,13 @@ void ws2812b_setColor(wsColor * c, int numLEDs) {
         // loop through each color bit, MSB first
         for (j = 7; j >= 0; j--) {
 
-            if ((c[i].r >> 7) == 1) { // check if MS bit is 1 
+            if ((c[i].r >> j) == 1) { // check if MS bit is 1 
                 // the high is longer
                 delay_times[nB] = delay_times[nB - 1] + HIGHTIME;
                 nB++;
                 delay_times[nB] = delay_times[nB - 1] + LOWTIME;
                 nB++;
             } 
-            
             else { // if the bit is a 0
                 // the low is longer
                 delay_times[nB] = delay_times[nB - 1] + LOWTIME;
@@ -50,19 +49,17 @@ void ws2812b_setColor(wsColor * c, int numLEDs) {
                 nB++;
             }
         }
-    }
-     for (i = 0; i < numLEDs; i++) {
-        // loop through each color bit, MSB first
+
+         // loop through each color bit, MSB first
         for (j = 7; j >= 0; j--) {
 
-            if ((c[i].g >> 7) == 1) { // check if MS bit is 1 
+            if ((c[i].g >> j) == 1) { // check if MS bit is 1 
                 // the high is longer
                 delay_times[nB] = delay_times[nB - 1] + HIGHTIME;
                 nB++;
                 delay_times[nB] = delay_times[nB - 1] + LOWTIME;
                 nB++;
             } 
-            
             else { // if the bit is a 0
                 // the low is longer
                 delay_times[nB] = delay_times[nB - 1] + LOWTIME;
@@ -71,20 +68,17 @@ void ws2812b_setColor(wsColor * c, int numLEDs) {
                 nB++;
             }
         }
-    }
 
-     for (i = 0; i < numLEDs; i++) {
-        // loop through each color bit, MSB first
+         // loop through each color bit, MSB first
         for (j = 7; j >= 0; j--) {
 
-            if ((c[i].b >> 7) == 1) { // check if MS bit is 1 
+            if ((c[i].b >> j) == 1) { // check if MS bit is 1 
                 // the high is longer
                 delay_times[nB] = delay_times[nB - 1] + HIGHTIME;
                 nB++;
                 delay_times[nB] = delay_times[nB - 1] + LOWTIME;
                 nB++;
             } 
-            
             else { // if the bit is a 0
                 // the low is longer
                 delay_times[nB] = delay_times[nB - 1] + LOWTIME;
