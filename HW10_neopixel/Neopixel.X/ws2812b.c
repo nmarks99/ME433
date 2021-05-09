@@ -33,16 +33,16 @@ void ws2812b_setColor(wsColor * c, int numLEDs) {
     for (i = 0; i < numLEDs; i++) {
         // loop through each color bit, MSB first
         for (j = 7; j >= 0; j--) {
-            // if the bit is a 1
-            if (/* identify the bit in c[].r, is it 1 */) {
+
+            if (c[0].r == 1) { // if MS bit in c[0].r is 1 
                 // the high is longer
                 delay_times[nB] = delay_times[nB - 1] + HIGHTIME;
                 nB++;
                 delay_times[nB] = delay_times[nB - 1] + LOWTIME;
                 nB++;
             } 
-            // if the bit is a 0
-            else {
+            
+            else { // if the bit is a 0
                 // the low is longer
                 delay_times[nB] = delay_times[nB - 1] + LOWTIME;
                 nB++;
@@ -50,19 +50,49 @@ void ws2812b_setColor(wsColor * c, int numLEDs) {
                 nB++;
             }
         }
-        // do it again for green
-		// do it again for blue
+            // Again for green
+            if (c[0].g == 1) { // if MS bit in c[0].g is 1 
+                // the high is longer
+                delay_times[nB] = delay_times[nB - 1] + HIGHTIME;
+                nB++;
+                delay_times[nB] = delay_times[nB - 1] + LOWTIME;
+                nB++;
+            } 
+            
+            else { // if the bit is a 0
+                // the low is longer
+                delay_times[nB] = delay_times[nB - 1] + LOWTIME;
+                nB++;
+                delay_times[nB] = delay_times[nB - 1] + HIGHTIME;
+                nB++;
+            }
+        
+        /   / Again for blue
+		    if (c[0].b == 1) { // if MS bit in c[0].b is 1 
+                // the high is longer
+                delay_times[nB] = delay_times[nB - 1] + HIGHTIME;
+                nB++;
+                delay_times[nB] = delay_times[nB - 1] + LOWTIME;
+                nB++;
+            } 
+            
+            else { // if the bit is a 0
+                // the low is longer
+                delay_times[nB] = delay_times[nB - 1] + LOWTIME;
+                nB++;
+                delay_times[nB] = delay_times[nB - 1] + HIGHTIME;
+                nB++;
+            }
     }
 
-    // turn on the pin for the first high/low
-    LATBbits.LATB6 = 1;
-    TMR2 = 0; // start the timer
+    LATBbits.LATB10 = 1;    // turn on the pin for the first high/low
+    TMR2 = 0;               // start the timer
     for (i = 1; i < numBits; i++) {
         while (TMR2 < delay_times[i]) {
         }
-        LATBINV = 0b1000000; // invert B6
+        LATBINV = 0b1000000; // invert B10
     }
-    LATBbits.LATB6 = 0;
+    LATBbits.LATB10 = 0;
     TMR2 = 0;
     while(TMR2 < 2400){} // wait 50uS, reset condition
 }
