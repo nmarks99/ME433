@@ -8,14 +8,14 @@
 
 // setup Timer2 for 48MHz, and setup the output pin
 void ws2812b_setup() {
-    T2CONbits.TCKPS = x; // Timer2 prescaler N=1 (1:1)
+    T2CONbits.TCKPS = 0b000; // Timer2 prescaler N=1 (1:1)
     PR2 = 65535; // maximum period
     TMR2 = 0; // initialize Timer2 to 0
     T2CONbits.ON = 1; // turn on Timer2
 
     // initialize output pin as off
-    // TRIS...
-    // LAT...
+    TRISBbits.TRISB10 = 0; // B10 is an output
+    LATBbits.LATB10 = 0;   // B10 is is initially off
 }
 
 // build an array of high/low times from the color input array, then output the high/low bits
