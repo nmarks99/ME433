@@ -1,5 +1,4 @@
 // WS2812B library
-
 #include "ws2812b.h"
 // other includes if necessary for debugging
 
