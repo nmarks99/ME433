@@ -3,8 +3,8 @@
 // other includes if necessary for debugging
 
 // Timer2 delay times, you can tune these if necessary
-#define LOWTIME 15 // number of 48MHz cycles to be low for 0.35uS
-#define HIGHTIME 65 // number of 48MHz cycles to be high for 1.65uS
+#define LOWTIME 15*10 // number of 48MHz cycles to be low for 0.35uS
+#define HIGHTIME 65*10 // number of 48MHz cycles to be high for 1.65uS
 
 // setup Timer2 for 48MHz, and setup the output pin
 void ws2812b_setup() {
@@ -67,7 +67,7 @@ void ws2812b_setColor(wsColor * c, int numLEDs) {
                 nB++;
             }
         
-        /   / Again for blue
+            // Again for blue
 		    if (c[0].b == 1) { // if MS bit in c[0].b is 1 
                 // the high is longer
                 delay_times[nB] = delay_times[nB - 1] + HIGHTIME;
