@@ -83,6 +83,6 @@ void LCD_setAddr(unsigned short, unsigned short, unsigned short, unsigned short)
 void LCD_clearScreen(unsigned short); // set the color of every pixel
 
 void drawChar(unsigned short x,unsigned short y,unsigned short color,unsigned char letter);
-// drawString function
+void drawString(unsigned short x,unsigned short y,unsigned short color, char *m);
 
 #endif

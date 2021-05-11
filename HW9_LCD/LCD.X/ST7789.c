@@ -15,6 +15,7 @@
 #include "ST7789.h"
 #include "spi.h"
 #include "font.h"
+#include <string.h>
 
 void LCD_command(unsigned char com) {
     LATBbits.LATB12 = 0; // DC
@@ -125,5 +126,10 @@ void drawChar(unsigned short x,unsigned short y,unsigned short color,unsigned ch
   }
 }
 
-// drawString function
+void drawString(unsigned short x,unsigned short y,unsigned short color, char *m){
+  int i;
+  for (i = 0; i < strlen(m); i++){
+    drawChar((x+(5*i)) , (y+(5*i)),color, m[i]);
+  }
+}
 
