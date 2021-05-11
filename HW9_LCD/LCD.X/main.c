@@ -9,13 +9,20 @@ int main(void){
     initSPI();      // Initalize SPI
     LCD_init();     // Initialize the LCD
     
-    unsigned char x = 90;
+    unsigned char x = 65;
     unsigned char y = 120;
     LCD_clearScreen(BLACK);
     
     char msg[10];
-    sprintf(msg,"Hello World!");
+    sprintf(msg,"HELLO WORLD");
     drawString(x,y,WHITE,msg);
-            
+        
+    while(1){
+        NM32_LED1 = 1;
+        core_delay(0.5);
+        NM32_LED1 = 0;
+        core_delay(0.5);
+    }
+    
     return 0;
 }
