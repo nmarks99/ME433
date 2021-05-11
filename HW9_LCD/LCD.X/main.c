@@ -16,7 +16,6 @@ int main(void){
     char msg[10];
     sprintf(msg,"Hello World!");
     drawString(x,y,WHITE,msg);
-    // drawChar(x,y,WHITE,'B');
             
     return 0;
 }
