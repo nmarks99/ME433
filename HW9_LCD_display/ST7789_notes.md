@@ -3,7 +3,7 @@
 ## Connections 
 GND -> GND  
 VCC -> 3.3V  
-SCL -> SCK  
+SCL -> SCK2 (pin 26)  
 SDA -> SDO   
 RES -> PIN  
 DC -> PIN  
