@@ -8,32 +8,26 @@ int main(void){
     NM32_Startup(); // Initialize the PIC
     initSPI();      // Initalize SPI
     LCD_init();     // Initialize the LCD
-    LATBbits.LATB15 = !LATBbits.LATB15; 
+//    LATBbits.LATB15 = !LATBbits.LATB15; 
     
-    unsigned short color = 20000;
-    unsigned char x = 10;
-    unsigned char y = 10;
-    
-    drawChar(x,y,color,'A');
-            
+    unsigned char x = 100;
+    unsigned char y = 100;
+    LCD_clearScreen(BLUE);
     int i = 0;
     
+//    for (i=0;i<8;i++){
+//        LCD_drawPixel(x,y+(i),WHITE);
+//    }
+    
+    drawChar(x,y,WHITE,'B');
+            
+    
+    
     while(1){
-
-//        if (i < 60000){
-//            LCD_clearScreen(i);
-//            core_delay(0.1);
-//        }
-//        else{
-//            i = 0;
-//        }
-//        i += 1000;
-//            
         NM32_LED1 = 1;
         core_delay(0.5);
         NM32_LED1 = 0;
         core_delay(0.5);
     }
-
     return 0;
 }

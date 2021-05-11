@@ -109,16 +109,17 @@ void LCD_clearScreen(unsigned short color) {
 
 void drawChar(unsigned short x,unsigned short y,unsigned short color,unsigned char letter){
 
-  int let = (int)letter;  // ASCII decimal representation of the letter
   unsigned char a; 
-  for (y ; y < 4 ; y++){
-    a = ASCII[let-0x20][y];
-    for(x ; x < 8 ; x++){
-      if ( ((a >> x) & 0b1) == 1 ){
-        LCD_drawPixel((7-x),y,color);
+  int i;
+  int j;
+  for (i=0; i < 5 ; i++){
+    a = ASCII[letter-0x20][i];
+    for(j=0; j < 8 ; j++){
+      if ( ((a >> j) & 0b1) == 1 ){
+        LCD_drawPixel((x+i),((y+j)),color);
       }
       else{
-        continue;
+          continue;
       }
     }
   }
