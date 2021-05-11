@@ -5,7 +5,7 @@
 
 // Timer2 delay times, you can tune these if necessary
 #define LOWTIME 15 // number of 48MHz cycles to be low for 0.35uS
-#define HIGHTIME 45 // number of 48MHz cycles to be high for 1.65uS
+#define HIGHTIME 65 // number of 48MHz cycles to be high for 1.65uS
 
 // setup Timer2 for 48MHz, and setup the output pin
 void ws2812b_setup() {
@@ -18,7 +18,7 @@ void ws2812b_setup() {
     TRISBbits.TRISB10 = 0; // B10 is an output
     LATBbits.LATB10 = 0;   // B10 is is initially off
 }
-char buff[100];
+//char buff[100];
 // build an array of high/low times from the color input array, then output the high/low bits
 void ws2812b_setColor(wsColor * c, int numLEDs) {
     int i = 0; int j = 0; // for loops
@@ -35,7 +35,7 @@ void ws2812b_setColor(wsColor * c, int numLEDs) {
         // loop through each color bit, MSB first
         for (j = 7; j >= 0; j--) {
 
-            if (c[i].r << j == 1) { // check if MS bit is 1 
+            if ((c[i].r >> j)& 0b1 == 0b1) { // check if MS bit is 1 
                 // the high is longer
                 delay_times[nB] = delay_times[nB - 1] + HIGHTIME;
                 nB++;
@@ -54,7 +54,7 @@ void ws2812b_setColor(wsColor * c, int numLEDs) {
          // loop through each color bit, MSB first
         for (j = 7; j >= 0; j--) {
 
-            if (c[i].g >> j == 1) { // check if MS bit is 1 
+            if ((c[i].g >> j) & 0b1 == 0b1) { // check if MS bit is 1 
                 // the high is longer
                 delay_times[nB] = delay_times[nB - 1] + HIGHTIME;
                 nB++;
@@ -73,7 +73,7 @@ void ws2812b_setColor(wsColor * c, int numLEDs) {
          // loop through each color bit, MSB first
         for (j = 7; j >= 0; j--) {
 
-            if (c[i].b >> j == 1) { // check if MS bit is 1 
+            if ((c[i].b >> j) & 0b1 == 0b1) { // check if MS bit is 1 
                 // the high is longer
                 delay_times[nB] = delay_times[nB - 1] + HIGHTIME;
                 nB++;
@@ -95,13 +95,13 @@ void ws2812b_setColor(wsColor * c, int numLEDs) {
     for (i = 1; i < numBits; i++) {
         while (TMR2 < delay_times[i]) {
         }
-        LATBINV = 0b1000000; // invert B10
+        LATBINV = 0b10000000000; // invert B10
         NM32_LED1 = 1;
     }
     LATBbits.LATB10 = 0;
     TMR2 = 0;
     while(TMR2 < 2400){;} // wait 50uS, reset condition (2400)
-    NM32_LED1 = 1;
+    NM32_LED1 = 0;
 }
 
 // adapted from https://forum.arduino.cc/index.php?topic=8498.0
