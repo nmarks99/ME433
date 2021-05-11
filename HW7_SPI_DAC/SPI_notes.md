@@ -4,7 +4,7 @@
    - Same wires can be connected to several different devices
    - One additional pin used to tell which device you are talking to
 ## Master -> Slave
-SCK -> SCK  
+SCK -> SCK1 (B15, pin 25)  
 SDO -> SDI  
-SDI <- SDO  
+SDA <- SDO  (B13, pin 24)
 CS -> CS  
