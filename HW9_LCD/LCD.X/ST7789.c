@@ -129,7 +129,7 @@ void drawChar(unsigned short x,unsigned short y,unsigned short color,unsigned ch
 void drawString(unsigned short x,unsigned short y,unsigned short color, char *m){
   int i;
   for (i = 0; i < strlen(m); i++){
-    drawChar((x+(5*i)) , (y+(5*i)),color, m[i]);
+    drawChar((x+(5*i)),y,color,m[i]);
   }
 }
 
