@@ -178,3 +178,32 @@ wsColor HSBtoRGB(float hue, float sat, float brightness) {
     c.b = iblue;
     return c;
 }
+
+// TODO: TEST THIS FUNCTION
+float neo_rainbow(float *c,int numLED,float saturation,float brightness){
+
+    wsColor colors[numLED];
+   
+    int i;  
+    int inc = 10; // Angle by which to increase the hue on each iteration
+
+    for (i = 0;i < numLED;i++){
+        colors[i] = HSBtoRGB(c[i],saturation,brightness);
+    }
+
+    // Set the color of each neopixel 
+    ws2812b_setColor(colors,numLED);    
+        
+    // Increment the colors accordingly 
+    for (i = 0; i < numLED; i++){
+        if ((c[i] >= 360)){
+            c[i] = 0;
+        }
+        else{
+            c[i] += inc;
+        }
+    }
+    core_delay(0.01);   // Wait for 0.01 seconds 
+    
+    return *c;
+}

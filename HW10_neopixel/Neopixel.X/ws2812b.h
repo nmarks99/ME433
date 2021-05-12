@@ -13,5 +13,6 @@ typedef struct {
 void ws2812b_setup();
 void ws2812b_setColor(wsColor*,int);
 wsColor HSBtoRGB(float hue, float sat, float brightness);
+float neo_rainbow(float *c,int numLED,float saturation,float brightness);
 
 #endif
