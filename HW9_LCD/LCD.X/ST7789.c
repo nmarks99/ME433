@@ -133,3 +133,19 @@ void drawString(unsigned short x,unsigned short y,unsigned short color, char *m)
   }
 }
 
+void loading_bar(unsigned short x, unsigned short y, unsigned short color){
+    int i;
+    int j;
+    unsigned short L = 50; // Bar is 50 pixels long
+    unsigned short H = 15; // Bar is 15 pixels tall 
+    
+    // Make vertical line at each column between x and x+L
+    for (i = 0; i < L; i++){
+        for (j = 0; j < H; j++){
+            LCD_drawPixel(x+i, (y+j), color);
+            core_delay(1);
+        }
+    }
+    
+}
+

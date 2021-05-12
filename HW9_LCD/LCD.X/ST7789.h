@@ -84,5 +84,6 @@ void LCD_clearScreen(unsigned short); // set the color of every pixel
 
 void drawChar(unsigned short x,unsigned short y,unsigned short color,unsigned char letter);
 void drawString(unsigned short x,unsigned short y,unsigned short color, char *m);
+void loading_bar(unsigned short x, unsigned short y, unsigned short color);
 
 #endif
