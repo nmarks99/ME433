@@ -17,7 +17,6 @@ int main(void){
     sprintf(msg,"HELLO WORLD");
     drawString(x,y,WHITE,msg);
     
-    
     while(1){
         NM32_LED1 = 1;
         core_delay(0.5);

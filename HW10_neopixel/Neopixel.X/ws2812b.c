@@ -1,7 +1,6 @@
 // WS2812B library
 #include "ws2812b.h"
 #include "NM32.h"
-// other includes if necessary for debugging
 
 // Timer2 delay times, you can tune these if necessary
 #define LOWTIME 15 // number of 48MHz cycles to be low for 0.35uS
@@ -18,7 +17,7 @@ void ws2812b_setup() {
     TRISBbits.TRISB10 = 0; // B10 is an output
     LATBbits.LATB10 = 0;   // B10 is is initially off
 }
-//char buff[100];
+
 // build an array of high/low times from the color input array, then output the high/low bits
 void ws2812b_setColor(wsColor * c, int numLEDs) {
     int i = 0; int j = 0; // for loops
