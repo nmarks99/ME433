@@ -7,7 +7,7 @@ int main(void){
     ws2812b_setup();// Setup timer and output pin
     
     wsColor colors[4];
-    float rainbow[4] = {0,90,180,270};  // Initial colors of each neopixel
+    float c[4] = {0,90,180,270};  // Initial colors of each neopixel
    
     int i;
     int numLED = 4;
@@ -17,7 +17,7 @@ int main(void){
         
         // Convert degrees (hue) to unsigned char (RGB) 
         for (i = 0;i < 4;i++){
-            colors[i] = HSBtoRGB(rainbow[i],1,0.5);
+            colors[i] = HSBtoRGB(c[i],1,0.5);
         }
 
         // Set the color of each neopixel 
@@ -25,11 +25,11 @@ int main(void){
             
         // Increment the colors accordingly 
         for (i = 0; i < 4; i++){
-            if ((rainbow[i] >= 360)){
-                rainbow[i] = 0;
+            if ((c[i] >= 360)){
+                c[i] = 0;
             }
             else{
-                rainbow[i] += inc;
+                c[i] += inc;
             }
         }
         core_delay(0.01);   // Wait for 0.01 seconds 
