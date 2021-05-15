@@ -15,8 +15,14 @@ int main(void){
     int barL = 75;
     int count = 0;
     int i;
+    float t0;
+    float tf;
+    float tdiff;
+    
     while(1){
-        drawBlock(85,120,32,45,BLACK);   // Clear previous number 
+        t0 = _CP0_GET_COUNT();
+        drawBlock(85,120,32,45,BLACK);  // Clear previous count
+        
         sprintf(msg,"Hello World %d",count);
         drawString(28,32,WHITE,msg);
         
@@ -26,7 +32,13 @@ int main(void){
         else{
             count = 0;
         }
-        progress_bar(28,42,75);
+        progress_bar(28,42,75,15); //xstart, ystart, length, height
+        tf = _CP0_GET_COUNT();
+        
+        drawBlock(60,120,100,150,BLACK);  // Clear previous time
+        tdiff= (t0 - tf)/CORE_TICKS;
+        sprintf(msg,"Time = %.3f",tdiff);
+        drawString(28,100,WHITE,msg);
     }
     
     return 0;
