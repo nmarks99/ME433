@@ -9,21 +9,15 @@ int main(void){
     initSPI();      // Initalize SPI
     LCD_init();     // Initialize the LCD
     
-    unsigned short x = 28;
-    unsigned short y = 32;
-    LCD_clearScreen(BLACK);
-    
-    char msg[10];
-    
-    
-    
-    
+    LCD_clearScreen(BLUE);  // Clear the screen to start
+   
+    char msg[20]; 
+    int barL = 75;
+    int count = 0;
     while(1){
-        LCD_clearScreen(BLACK);
-        sprintf(msg,"HELLO WORLD");
-        drawString(x,y,WHITE,msg);
-        core_delay(1);
-//        loading_bar(x,y,WHITE);
+        int len = sizeof(count);
+        sprintf(msg,"Hello World %d!",)
+        progress_bar(x,y,75,WHITE);
     }
     
     return 0;
