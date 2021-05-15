@@ -1,1 +1,1 @@
-# NOTES GO HERE
+# Inertial measurement unit (IMU)
