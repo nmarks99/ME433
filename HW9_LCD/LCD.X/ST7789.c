@@ -150,6 +150,8 @@ void drawBlock(int xstart, int xstop, int ystart, int ystop, unsigned short colo
 void progress_bar(unsigned short xstart, unsigned short ystart, unsigned short L, unsigned short H){
   int i;
   int j;
+  char msg[50];
+  int count = 0;
   
   // Make a red background for the loading bar
   for (i=0; i <= L; i++){
@@ -163,7 +165,7 @@ void progress_bar(unsigned short xstart, unsigned short ystart, unsigned short L
     for (j=0; j <= H; j++){
         LCD_drawPixel(xstart+i,ystart+j,GREEN);
     }
-    core_delay(0.01);
+    core_delay(0.01);  
   }
 }
 

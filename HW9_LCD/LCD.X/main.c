@@ -9,22 +9,28 @@ int main(void){
     initSPI();      // Initalize SPI
     LCD_init();     // Initialize the LCD
     
-    LCD_clearScreen(BLACK);  // Clear the screen to start
+    LCD_clearScreen(BLUE);  // Clear the screen to start
    
-    char msg[20]; 
+    char msg[50]; 
     int barL = 75;
     int count = 0;
     int i;
-    float t0;
-    float tf;
-    float tdiff;
+    float t0 = 0;
+    float tf = 0;
+    float fps;
     
     while(1){
+        
         t0 = _CP0_GET_COUNT();
-        drawBlock(85,120,32,45,BLACK);  // Clear previous count
+        drawBlock(85,120,32,45,BLUE);  // Clear previous count
         
         sprintf(msg,"Hello World %d",count);
         drawString(28,32,WHITE,msg);
+        
+        tf = _CP0_GET_COUNT();
+        fps = CORE_TICKS/(tf - t0);
+        sprintf(msg,"FPS = %.3f",fps);
+        drawString(28,100,WHITE,msg);
         
         if ( count <= 100 ){
             count ++;
@@ -32,13 +38,10 @@ int main(void){
         else{
             count = 0;
         }
+       
         progress_bar(28,42,75,15); //xstart, ystart, length, height
-        tf = _CP0_GET_COUNT();
+        drawBlock(55,120,100,150,BLUE);  // Clear previous time
         
-        drawBlock(60,120,100,150,BLACK);  // Clear previous time
-        tdiff= (t0 - tf)/CORE_TICKS;
-        sprintf(msg,"Time = %.3f",tdiff);
-        drawString(28,100,WHITE,msg);
     }
     
     return 0;
