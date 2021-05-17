@@ -5,6 +5,15 @@
 
 #include <xc.h>
 
+#define IMU_WHOAMI 0x0F
+#define IMU_ADDR 0b1101010
+#define IMU_WADD 0b11010100
+#define IMU_RADD 0b11010101
+#define IMU_CTRL1_XL 0x10
+#define IMU_CTRL2_G 0x11
+#define IMU_CTRL3_C 0x12
+#define IMU_OUT_TEMP_L 0x20
+
 void i2c_master_setup(void); // set up I2C1 as master
 void i2c_master_start(void); // send a START signal
 void i2c_master_restart(void); // send a RESTART signal
