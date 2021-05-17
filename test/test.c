@@ -2,11 +2,12 @@
 #include <string.h>
 
 int main(void){
+    
+    unsigned char x = 0b1101010;
+    x = (x << 1) | 0b1;
 
-    int x = 0b11010100;
-    int y = 0b00000001;
-    int z = x | y;
-    printf("%d",z);
+    printf("%d",x);
+    
 
     return 0;
 }

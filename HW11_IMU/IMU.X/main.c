@@ -1,23 +1,23 @@
 #include "NM32.h"
 #include "i2c_master_noint.h"
+#include "imu.h"
 
 int main(void){
-    NM32_Startup(); // Initialize the PIC32
+
+    NM32_Startup();     // Initialize the PIC32
     i2c_master_setup(); // Initialize I2C
+    imu_setup();        // Make sure we are talking to the IMU properly
     
     char buff[20];
-    int f;
+    unsigned char w;
     while(1){
         
-        
-        f = readPin(IMU_WADD, IMU_WHOAMI);
-        sprintf(buff,"I am %d\r\n",f);
-        writeUART1(buff);
-        
+        // Heartbeat
         NM32_LED1 = 1;
         core_delay(0.1);
         NM32_LED1 = 0;
         core_delay(0.1);
     }
+    
     return 0;
 }

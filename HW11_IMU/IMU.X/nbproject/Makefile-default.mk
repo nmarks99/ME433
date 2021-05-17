@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=NM32.c main.c i2c_master_noint.c
+SOURCEFILES_QUOTED_IF_SPACED=NM32.c main.c i2c_master_noint.c imu.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/NM32.o ${OBJECTDIR}/main.o ${OBJECTDIR}/i2c_master_noint.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/NM32.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/i2c_master_noint.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/NM32.o ${OBJECTDIR}/main.o ${OBJECTDIR}/i2c_master_noint.o ${OBJECTDIR}/imu.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/NM32.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/i2c_master_noint.o.d ${OBJECTDIR}/imu.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/NM32.o ${OBJECTDIR}/main.o ${OBJECTDIR}/i2c_master_noint.o
+OBJECTFILES=${OBJECTDIR}/NM32.o ${OBJECTDIR}/main.o ${OBJECTDIR}/i2c_master_noint.o ${OBJECTDIR}/imu.o
 
 # Source Files
-SOURCEFILES=NM32.c main.c i2c_master_noint.c
+SOURCEFILES=NM32.c main.c i2c_master_noint.c imu.c
 
 
 
@@ -125,6 +125,12 @@ ${OBJECTDIR}/i2c_master_noint.o: i2c_master_noint.c  .generated_files/219e28fbfb
 	@${RM} ${OBJECTDIR}/i2c_master_noint.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/i2c_master_noint.o.d" -o ${OBJECTDIR}/i2c_master_noint.o i2c_master_noint.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
+${OBJECTDIR}/imu.o: imu.c  .generated_files/9fc084ebe688bf664b4bb6fce98e50395f037c3d.flag .generated_files/9c38dd73fa47c8727ca672a3ac38932765b77050.flag
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/imu.o.d 
+	@${RM} ${OBJECTDIR}/imu.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/imu.o.d" -o ${OBJECTDIR}/imu.o imu.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
+	
 else
 ${OBJECTDIR}/NM32.o: NM32.c  .generated_files/9010c31bf8d412b371a6da632cf6737e3aafa3f6.flag .generated_files/9c38dd73fa47c8727ca672a3ac38932765b77050.flag
 	@${MKDIR} "${OBJECTDIR}" 
@@ -143,6 +149,12 @@ ${OBJECTDIR}/i2c_master_noint.o: i2c_master_noint.c  .generated_files/7f8d2fddfc
 	@${RM} ${OBJECTDIR}/i2c_master_noint.o.d 
 	@${RM} ${OBJECTDIR}/i2c_master_noint.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/i2c_master_noint.o.d" -o ${OBJECTDIR}/i2c_master_noint.o i2c_master_noint.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
+	
+${OBJECTDIR}/imu.o: imu.c  .generated_files/744e619d66e498cae2120eb6b1da24edc64e87c0.flag .generated_files/9c38dd73fa47c8727ca672a3ac38932765b77050.flag
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/imu.o.d 
+	@${RM} ${OBJECTDIR}/imu.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/imu.o.d" -o ${OBJECTDIR}/imu.o imu.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
 endif
 
