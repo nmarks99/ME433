@@ -16,6 +16,12 @@ void imu_setup(void){
     }
 
     // Initialize the acceleration sensor
+    setPin(IMU_WADD,IMU_CTRL1_XL,0b10000010); // Sample rate 1.66 kHz, 2g sensitivity, 100 Hz filter
 
+    // Initialize gyroscope
+    setPin(IMU_WADD,IMU_CTRL2_G,0b10001000);  // Sample rate 1.66 kHz, 1000 dps sensitivity
 
+    // Control register
+    setPin(IMU_WADD,IMU_CTRL3_C,0b00000100);  //  IF_INC = 1
+    
 }
