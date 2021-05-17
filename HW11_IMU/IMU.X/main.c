@@ -8,7 +8,7 @@ int main(void){
 
     NM32_Startup();     // Initialize the PIC32
     i2c_master_setup(); // Initialize I2C
-    imu_setup();        // Make sure we are talking to the IMU properly
+    imu_setup();        // Initialize the IMU
     
     char buff[20];      // Buffer to write over UART 
 

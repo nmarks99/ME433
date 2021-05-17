@@ -9,6 +9,7 @@
       <itemPath>imu.h</itemPath>
       <itemPath>spi.h</itemPath>
       <itemPath>ST7789.h</itemPath>
+      <itemPath>font.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

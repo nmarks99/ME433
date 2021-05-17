@@ -4,8 +4,9 @@
 
 
 void imu_setup(void){
+
     unsigned char who;
-    char buff[20];
+    // Check that we are talking with the IMU correctly
     who = readPin(IMU_WADD, IMU_WHOAMI);
     if (who != 0b1101001){
         while(1){
@@ -13,4 +14,8 @@ void imu_setup(void){
             NM32_LED1 = 0;
         }
     }
+
+    // Initialize the acceleration sensor
+
+
 }
