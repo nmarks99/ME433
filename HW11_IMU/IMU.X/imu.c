@@ -11,7 +11,7 @@ void imu_setup(void){
     if (who != 0b1101001){
         while(1){
             // Turn off LED and hang here
-            NM32_LED1 = 0;
+            NM32_LED1 = 1;
         }
     }
 
