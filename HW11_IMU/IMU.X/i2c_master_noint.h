@@ -15,6 +15,6 @@ void i2c_master_stop(void); // send a stop
 
 void setPin(unsigned char Wadd, unsigned char reg, unsigned char value);
 unsigned char readPin(unsigned char Wadd, unsigned char reg);
-// void I2C_read_multiple(unsigned char address, unsigned char register, unsigned char * data, int length);
+void I2C_read_multiple(unsigned char address, unsigned char register, unsigned char * data, int length);
 
 #endif
