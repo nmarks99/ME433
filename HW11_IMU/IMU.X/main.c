@@ -9,6 +9,8 @@ int main(void){
     NM32_Startup();     // Initialize the PIC32
     i2c_master_setup(); // Initialize I2C
     imu_setup();        // Initialize the IMU
+    initSPI();          // Initalize SPI
+    LCD_init();         // Initialize the LCD
     
     char buff[20];      // Buffer to write over UART 
 
