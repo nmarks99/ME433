@@ -1,6 +1,8 @@
 #include "NM32.h"
 #include "i2c_master_noint.h"
 #include "imu.h"
+#include "spi.h"
+#include "ST7789.h"
 
 int main(void){
 
@@ -8,8 +10,8 @@ int main(void){
     i2c_master_setup(); // Initialize I2C
     imu_setup();        // Make sure we are talking to the IMU properly
     
-    char buff[20];
-    unsigned char w;
+    char buff[20];      // Buffer to write over UART 
+
     while(1){
         
         // Heartbeat

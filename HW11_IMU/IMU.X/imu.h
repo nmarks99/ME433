@@ -1,7 +1,7 @@
 #ifndef IMU__H__
 #define IMU__H__
 
-#include<xc.h>  // Processor SFR definitions
+#include<xc.h>              // Processor SFR definitions
 
 #define IMU_WHOAMI 0x0F     // Address for WHOAMI register
 #define IMU_ADDR 0b1101010  // IMU address

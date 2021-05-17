@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=NM32.c main.c i2c_master_noint.c imu.c
+SOURCEFILES_QUOTED_IF_SPACED=NM32.c main.c i2c_master_noint.c imu.c ST7789.c spi.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/NM32.o ${OBJECTDIR}/main.o ${OBJECTDIR}/i2c_master_noint.o ${OBJECTDIR}/imu.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/NM32.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/i2c_master_noint.o.d ${OBJECTDIR}/imu.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/NM32.o ${OBJECTDIR}/main.o ${OBJECTDIR}/i2c_master_noint.o ${OBJECTDIR}/imu.o ${OBJECTDIR}/ST7789.o ${OBJECTDIR}/spi.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/NM32.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/i2c_master_noint.o.d ${OBJECTDIR}/imu.o.d ${OBJECTDIR}/ST7789.o.d ${OBJECTDIR}/spi.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/NM32.o ${OBJECTDIR}/main.o ${OBJECTDIR}/i2c_master_noint.o ${OBJECTDIR}/imu.o
+OBJECTFILES=${OBJECTDIR}/NM32.o ${OBJECTDIR}/main.o ${OBJECTDIR}/i2c_master_noint.o ${OBJECTDIR}/imu.o ${OBJECTDIR}/ST7789.o ${OBJECTDIR}/spi.o
 
 # Source Files
-SOURCEFILES=NM32.c main.c i2c_master_noint.c imu.c
+SOURCEFILES=NM32.c main.c i2c_master_noint.c imu.c ST7789.c spi.c
 
 
 
@@ -131,6 +131,18 @@ ${OBJECTDIR}/imu.o: imu.c  .generated_files/9fc084ebe688bf664b4bb6fce98e50395f03
 	@${RM} ${OBJECTDIR}/imu.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/imu.o.d" -o ${OBJECTDIR}/imu.o imu.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
+${OBJECTDIR}/ST7789.o: ST7789.c  .generated_files/7a3bd174c4bddcc1bf305209c4219595567530aa.flag .generated_files/9c38dd73fa47c8727ca672a3ac38932765b77050.flag
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ST7789.o.d 
+	@${RM} ${OBJECTDIR}/ST7789.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/ST7789.o.d" -o ${OBJECTDIR}/ST7789.o ST7789.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
+	
+${OBJECTDIR}/spi.o: spi.c  .generated_files/3a7733d07947cd8c036f90105a059e8e9c4a854e.flag .generated_files/9c38dd73fa47c8727ca672a3ac38932765b77050.flag
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/spi.o.d 
+	@${RM} ${OBJECTDIR}/spi.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/spi.o.d" -o ${OBJECTDIR}/spi.o spi.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
+	
 else
 ${OBJECTDIR}/NM32.o: NM32.c  .generated_files/9010c31bf8d412b371a6da632cf6737e3aafa3f6.flag .generated_files/9c38dd73fa47c8727ca672a3ac38932765b77050.flag
 	@${MKDIR} "${OBJECTDIR}" 
@@ -155,6 +167,18 @@ ${OBJECTDIR}/imu.o: imu.c  .generated_files/744e619d66e498cae2120eb6b1da24edc64e
 	@${RM} ${OBJECTDIR}/imu.o.d 
 	@${RM} ${OBJECTDIR}/imu.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/imu.o.d" -o ${OBJECTDIR}/imu.o imu.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
+	
+${OBJECTDIR}/ST7789.o: ST7789.c  .generated_files/52c8f1e60de7e73fba35f6d3fcad1c8e34ac74ee.flag .generated_files/9c38dd73fa47c8727ca672a3ac38932765b77050.flag
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/ST7789.o.d 
+	@${RM} ${OBJECTDIR}/ST7789.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/ST7789.o.d" -o ${OBJECTDIR}/ST7789.o ST7789.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
+	
+${OBJECTDIR}/spi.o: spi.c  .generated_files/ecbb44bee575f040af25df94b9156cb4e33b869d.flag .generated_files/9c38dd73fa47c8727ca672a3ac38932765b77050.flag
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/spi.o.d 
+	@${RM} ${OBJECTDIR}/spi.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/spi.o.d" -o ${OBJECTDIR}/spi.o spi.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
 endif
 
