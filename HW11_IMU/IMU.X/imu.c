@@ -11,7 +11,7 @@ void imu_setup(void){
     if (who != 0b1101001){
         while(1){
             // Turn off LED and hang here
-            NM32_LED1 = 1;
+            NM32_LED1 = 0;
         }
     }
 
@@ -24,4 +24,16 @@ void imu_setup(void){
     // Control register
     setPin(IMU_WADD,IMU_CTRL3_C,0b00000100);  //  IF_INC = 1
     
+}
+
+void imu_read(unsigned char reg,signed short *data,int len){
+    
+    unsigned char raw[14];
+    I2C_read_multiple(IMU_WADD,reg,raw,len);
+    
+    // Convert each high/low 8-bit chars to 16-bit short
+    int i = 0;
+    for (i = 0; i < 7 ; i+=2){
+        data[i] = (raw[(i*2)+1] << 8) | raw[(i*2)];
+    }
 }

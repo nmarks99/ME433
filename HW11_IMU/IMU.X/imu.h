@@ -4,7 +4,6 @@
 #include<xc.h>              // Processor SFR definitions
 
 #define IMU_WHOAMI 0x0F     // Address for WHOAMI register
-#define IMU_ADDR 0b1101010  // IMU address
 #define IMU_WADD 0b11010100 // Write address
 #define IMU_RADD 0b11010101 // Read address
 #define IMU_CTRL1_XL 0x10   // Acceleration control register
@@ -13,6 +12,6 @@
 #define IMU_OUT_TEMP_L 0x20 // Temperature
 
 void imu_setup(void);
-
+void imu_read(unsigned char reg,signed short *data,int len);
 
 #endif
