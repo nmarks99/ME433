@@ -93,7 +93,7 @@ void I2C_read_multiple(unsigned char Wadd, unsigned char reg, unsigned char *dat
     i2c_master_restart();     // Restart
     i2c_master_send(Radd);    // Send read address
     
-    for (i = 0; i <= len; i++){
+    for (i = 0; i < len; i++){
         data[i] = i2c_master_recv(); // Get received value
         if (i == len){
             break;
