@@ -83,9 +83,8 @@ unsigned char readPin(unsigned char Wadd, unsigned char reg){
     return recv;
 }
 
-void I2C_read_multiple(unsigned char Wadd, unsigned char reg, unsigned char *data, int len){
-    unsigned char Radd = Wadd | 0b00000001; // Change the last bit to 1 for read address
-    unsigned char recv; 
+void I2C_read_multiple(unsigned char Wadd, unsigned char reg, unsigned char *raw, int len){
+    unsigned char Radd = Wadd | 0b00000001; // Change the last bit to 1 for read address 
     int i;
     i2c_master_start();       // Send start bit
     i2c_master_send(Wadd);    // Send write address
@@ -94,12 +93,12 @@ void I2C_read_multiple(unsigned char Wadd, unsigned char reg, unsigned char *dat
     i2c_master_send(Radd);    // Send read address
     
     for (i = 0; i < len; i++){
-        data[i] = i2c_master_recv(); // Get received value
-        if (i == len){
+        raw[i] = i2c_master_recv(); // Get received value
+        if (i == (len-1)){  // break out at the last one 
             break;
         }
         else{
-            i2c_master_ack(0);       // Acknowledge 0 to read again
+            i2c_master_ack(0); // Acknowledge 0 to read again
         }
          
     }

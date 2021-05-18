@@ -12,6 +12,9 @@ void imu_setup(void){
         while(1){
             // Turn off LED and hang here
             NM32_LED1 = 0;
+            core_delay(2);
+            NM32_LED1 = 1;
+            core_delay(2);
         }
     }
 
