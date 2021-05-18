@@ -40,3 +40,4 @@ void imu_read(unsigned char reg,signed short *data,int len){
         data[i] = (raw[(i*2)+1] << 8) | raw[(i*2)];
     }
 }
+ 
