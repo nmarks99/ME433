@@ -36,7 +36,7 @@ void imu_read(unsigned char reg,signed short *data,int len){
     
     // Convert each high/low 8-bit chars to 16-bit short
     int i = 0;
-    for (i = 0; i < 7 ; i+=2){
+    for (i = 0; i < 7 ; i++){
         data[i] = (raw[(i*2)+1] << 8) | raw[(i*2)];
     }
 }

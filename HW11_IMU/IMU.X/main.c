@@ -13,16 +13,17 @@ int main(void){
     initSPI();          // Initalize SPI
     LCD_init();         // Initialize the LCD
     
-    char buff[20];      // Buffer
-    signed short data[7];
+    char buff[100];      // Buffer
+    signed short data[3];
     int i;
     
     while(1){
         
 
-        imu_read(0x20,data,14);
+        imu_read(0x22,data,12);
         
-        sprintf(buff,"%hi, %hi, %hi, %hi, %hi, %hi, %hi \r\n",data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
+//        sprintf(buff,"%hi, %hi, %hi, %hi, %hi, %hi, %hi \r\n",data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
+        sprintf(buff,"%hi, %hi, %hi\r\n",data[0],data[1],data[2]);
         writeUART1(buff);
         core_delay(0.05);
         NM32_LED1 = !NM32_LED1;
