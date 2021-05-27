@@ -12,36 +12,47 @@ int main(void){
     LCD_clearScreen(BLUE);  // Clear the screen to start
    
     char msg[50]; 
-    int barL = 75;
-    int count = 0;
+    unsigned short L = 100;
+    unsigned short H = 15;
     int i;
+    int j;
     float t0 = 0;
     float tf = 0;
     float fps;
     
     while(1){
         
-        t0 = _CP0_GET_COUNT();
-        drawBlock(85,120,32,45,BLUE);  // Clear previous count
-        
-        sprintf(msg,"Hello World %d",count);
-        drawString(28,32,WHITE,msg);
-        
-        tf = _CP0_GET_COUNT();
-        fps = CORE_TICKS/(tf - t0);
-        sprintf(msg,"FPS = %.3f",fps);
-        drawString(28,100,WHITE,msg);
-        
-        if ( count <= 100 ){
-            count ++;
+
+
+        for (i = 0; i < L; i++){
+            
+            sprintf(msg,"Hello World %d",i);
+            _CP0_SET_COUNT(0);
+//            core_delay(0.1);
+            drawString(28,23,WHITE,msg);
+            tf = _CP0_GET_COUNT();
+            
+            fps = CORE_TICKS/tf;
+            sprintf(msg,"FPS = %.2f",fps);
+            drawString(28,75,WHITE,msg);
+            
+            core_delay(0.05);
+            
+            if (i < L/2){
+                progress_bar(28,42,L,H,i,RED);
+            }
+            else{
+                progress_bar(28,42,L,H,i,GREEN);
+            }
+            
+            // Clear loading bar
+            if (i == (L-1)){
+                drawBlock(28,30+L,42,42+H,BLUE);
+            }
+            drawBlock(85,120,20,41,BLUE);   // Clear previous count
+            drawBlock(55,100,75,100,BLUE);  // Clear previous FPS 
+            
         }
-        else{
-            count = 0;
-        }
-       
-        progress_bar(28,42,75,15); //xstart, ystart, length, height
-        drawBlock(55,120,100,150,BLUE);  // Clear previous time
-        
     }
     
     return 0;
