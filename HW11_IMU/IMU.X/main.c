@@ -42,7 +42,7 @@ int main(void){
         }  
         else{
             for(i = 0; i < abs(data[5])/30;i++){
-                LCD_drawPixel(home-i,home,BLUE);
+                LCD_drawPixel(home-i,home,BLUE);    
             } 
         }
 
