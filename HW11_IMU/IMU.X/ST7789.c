@@ -146,27 +146,21 @@ void drawBlock(int xstart, int xstop, int ystart, int ystop, unsigned short colo
   }
 }
 
-
-void progress_bar(unsigned short xstart, unsigned short ystart, unsigned short L, unsigned short H){
-  int i;
-  int j;
-  char msg[50];
-  int count = 0;
+void progress_bar(unsigned short xstart, unsigned short ystart, unsigned short L, unsigned short H, int inc,unsigned short color){
+    /* 
+    INPUTS:
+      xstart: starting x location of the bar
+      ystart: starting y location of the bar
+      L: overall length of the bar 
+      H: overall height of the bar 
+      inc: increment, columns of pixels to draw right of the starting point
+     */
+    int i=0;
+    int j=0;
+    char msg[50];
   
-  // Make a red background for the loading bar
-  for (i=0; i <= L; i++){
-      for (j=0; j <= H; j++){
-          LCD_drawPixel(xstart+i,ystart+j,RED);
-      }
-  }
-  
-  // Make the green loading bar with a delay
-  for (i=0; i <= L; i++){
-    for (j=0; j <= H; j++){
-        LCD_drawPixel(xstart+i,ystart+j,GREEN);
-    }
-    core_delay(0.01);  
-  }
+    // Make the green loading bar
+    for (j = 0; j <= H; j++){
+        LCD_drawPixel(xstart+inc,ystart+j,color);
+    } 
 }
-
-

@@ -23,7 +23,7 @@ int main(void){
     while(1){
         
 
-
+        
         for (i = 0; i < L; i++){
             
             sprintf(msg,"Hello World %d",i);
