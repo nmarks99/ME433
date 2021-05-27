@@ -13,7 +13,7 @@ int main(void){
     initSPI();          // Initalize SPI
     LCD_init();         // Initialize the LCD
     
-    LCD_clearScreen(BLACK);
+    LCD_clearScreen(BLUE);
     char buff[100];      
     signed short data[7];
     unsigned short home = 120; // Center of LCD at (120,120) 
