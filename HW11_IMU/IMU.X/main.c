@@ -22,13 +22,19 @@ int main(void){
 
         imu_read(IMU_OUT_TEMP_L,data,14); // read the IMU temp, gyro, and acceleration
         
+        // Print data
         sprintf(buff,"g: %d, %d, %d\r\n",data[1],data[2],data[3]);
         drawString(20,30,WHITE,buff);
         sprintf(buff,"a: %d, %d, %d",data[4],data[5],data[6]);
         drawString(20,40,WHITE,buff);
-        core_delay(0.05);
+        core_delay(0.07);
+        
+        // Clear last data 
+        sprintf(buff,"g: %d, %d, %d\r\n",data[1],data[2],data[3]);
+        drawString(20,30,BLUE,buff);
+        sprintf(buff,"a: %d, %d, %d",data[4],data[5],data[6]);
+        drawString(20,40,BLUE,buff);
         NM32_LED1 = !NM32_LED1;
-        drawBlock(30,150,30,100,BLACK);
         
     }
     
