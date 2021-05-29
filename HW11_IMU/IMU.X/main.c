@@ -22,45 +22,58 @@ int main(void){
 
         imu_read(IMU_OUT_TEMP_L,data,14); // read the IMU temp, gyro, and acceleration
         
+        // Draw x line
         if (data[5] > 0){
-            for(i = 0; i < data[5]/30;i++){
+            for(i = 0; i < data[5]/25;i++){
                 LCD_drawPixel(home+i,home,WHITE);
             }
         }  
         else{
-            for(i = 0; i < abs(data[5])/30;i++){
+            for(i = 0; i < abs(data[5])/25;i++){
                 LCD_drawPixel(home-i,home,WHITE);
             } 
         }
 
-        core_delay(0.01);
+        // Draw y line
+        if (data[4] > 0){
+            for (i = 0; i < data[4]/25;i++){
+                LCD_drawPixel(home,home+i,WHITE);
+            }
+        }
+        else{
+            for(i = 0;i < abs(data[4]/25);i++){
+                LCD_drawPixel(home,home-i,WHITE);
+            }
+        }
 
+        core_delay(0.015);
+
+        // Clear xline
         if (data[5] > 0){
-            for(i = 0; i < data[5]/30;i++){
+            for(i = 0; i < data[5]/25;i++){
                 LCD_drawPixel(home+i,home,BLUE);
             }
         }  
         else{
-            for(i = 0; i < abs(data[5])/30;i++){
+            for(i = 0; i < abs(data[5])/25;i++){
                 LCD_drawPixel(home-i,home,BLUE);    
             } 
         }
-
-        // Print data
-        // sprintf(buff,"g: %d, %d, %d\r\n",data[1],data[2],data[3]);
-        // drawString(20,30,WHITE,buff);
-        // sprintf(buff,"a: %d, %d, %d",data[4],data[5],data[6]);
-        // drawString(20,40,WHITE,buff);
-
-        // Clear last data 
-        // sprintf(buff,"g: %d, %d, %d\r\n",data[1],data[2],data[3]);
-        // drawString(20,30,BLUE,buff);
-        // sprintf(buff,"a: %d, %d, %d",data[4],data[5],data[6]);
-        // drawString(20,40,BLUE,buff);
+        
+        // Clear y line
+        if (data[4] > 0){
+            for (i = 0; i < data[4]/25;i++){
+                LCD_drawPixel(home,home+i,BLUE);
+            }
+        }
+        else{
+            for(i = 0;i < abs(data[4]/25);i++){
+                LCD_drawPixel(home,home-i,BLUE);
+            }
+        }
         
         NM32_LED1 = !NM32_LED1;
-        
     }
-    
+
     return 0;
 }
