@@ -1,2 +1,0 @@
-# Combination of many components and peripherals
-This folder contains code with combines the functionality of many of the components included in the other assignments such as the neopixels, LCD display, and UART communication.
