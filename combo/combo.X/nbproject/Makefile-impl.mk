@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Neopixel.X
+PROJECTNAME=combo.X
 
 # Active Configuration
 DEFAULTCONF=default

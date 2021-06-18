@@ -3,8 +3,8 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>Neopixel</name>
-            <creation-uuid>19e5a3b2-fe37-4211-a29c-9c3e2feba891</creation-uuid>
+            <name>combo</name>
+            <creation-uuid>4a611f65-3484-424b-9560-3097a3bd8ded</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
             <cpp-extensions/>
