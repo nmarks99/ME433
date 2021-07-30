@@ -115,7 +115,7 @@ void delay(float waitTime){
     }
 }
 
-// Read from UART3
+// Read from UART1
 // block other functions until you get a '\r' or '\n'
 // send the pointer to your char array and the number of elements in the array
 void readUART1(char * message, int maxLength) {
